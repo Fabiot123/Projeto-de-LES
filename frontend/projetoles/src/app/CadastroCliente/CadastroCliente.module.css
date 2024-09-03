@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+.countainer{
+    background-color: rgb(255, 255, 255);
+    font-family: 'Roboto', sans-serif;
+    width: 1100px;
+    /* height: 1000px; */
+    border: 1px solid #ccc;
+    border-radius: 15px; 
+    margin: 0 auto;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 5px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.formSection {
+    margin-bottom: 20px;
+}

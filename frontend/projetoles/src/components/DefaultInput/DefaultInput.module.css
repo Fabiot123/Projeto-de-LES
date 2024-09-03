@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+.inputContainer {
+    margin-bottom: 10px;
+}
+
+.inputTitle {
+    font-size: 16px;
+    margin-bottom: 5px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.inputField {
+    width: 80%; 
+    padding: 10px; 
+    font-size: 16px; 
+    border: 1px solid #ccc; 
+    border-radius: 20px; 
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}

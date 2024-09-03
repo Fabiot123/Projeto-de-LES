@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "react-hook-form": "^7.52.2",
+    "react-toastify": "^10.0.5"
+  },
+  "devDependencies": {
+    "prisma": "^5.19.0"
+  }
+}

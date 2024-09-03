@@ -1,0 +1,29 @@
+.container {
+    margin-bottom: 10px;
+}
+
+.title {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2rem;
+    color: #000000;
+}
+
+.checkboxGroup {
+    display: flex;
+    gap: 15px; /* Espaçamento entre as opções */
+}
+
+.checkboxOption {
+    display: flex;
+    align-items: center;
+}
+
+.checkboxInput {
+    margin-right: 5px;
+}
+
+.checkboxLabel {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    color: #000000;
+}

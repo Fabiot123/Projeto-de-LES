@@ -1,0 +1,101 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Client {
+  cli_id String @id @default(uuid())
+  cli_name String @unique
+  cli_gen Genero 
+  cli_tel_id String @unique
+  cli_tel Telefone? @relation(fields: [cli_tel_id], references: [tel_id], onDelete: Cascade)
+  cli_dt_nasc DateTime
+  cli_cpf String @unique
+  cli_email String @unique
+  cli_senha String
+  cli_end Endereco[]
+  cli_crt Cartao[]
+  cli_status StatusCliente
+}
+
+model Telefone {
+  tel_id String @id @default(uuid())
+  tel_tipo TipoTel
+  tel_ddd String 
+  tel_num String @unique
+  tel_client Client?
+}
+
+model Endereco {
+  end_id String @id @default(uuid())
+  end_resi TipoResidencia
+  end_tlogra TipoLograd
+  end_logra String
+  end_num String
+  end_bairro String
+  end_cep String
+  end_cidade String
+  end_estado String
+  end_pais String
+  end_cli_id String
+  end_res Boolean
+  end_cob Boolean
+  end_ent Boolean
+  end_cli Client? @relation(fields: [end_cli_id], references: [cli_id], onDelete: Cascade)
+}
+
+model Cartao {
+  crt_id String @id @default(uuid())
+  crt_num String @unique
+  crt_nome String
+  crt_band TipoBandeira
+  crt_validade String
+  crt_cod_seg String
+  crt_tipo TipoCartao
+  crt_cli_id String
+  crt_cli Client? @relation(fields: [crt_cli_id], references: [cli_id], onDelete: Cascade)
+}
+
+enum TipoCartao {
+  Credito
+  Debito
+}
+enum Genero {
+  Masculino
+  Feminino
+  Outro
+}
+
+enum TipoTel {
+  Fixo
+  Movel
+}
+
+enum StatusCliente {
+  Ativo
+  Inativo
+}
+
+enum TipoLograd {
+  Publico
+  Privado
+}
+
+enum TipoResidencia {
+  Casa
+  Apartamento
+}
+
+enum TipoBandeira {
+  Visa
+  MasterCard
+  AmeircanExpress
+  Elo
+  Hipercard
+  Alelo
+}

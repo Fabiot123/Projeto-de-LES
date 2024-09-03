@@ -1,0 +1,17 @@
+.container {
+    margin-bottom: 10px;
+}
+
+.radioOption {
+    margin-bottom: 5px;
+}
+
+.radioInput {
+    margin-right: 5px;
+}
+
+.radioLabel {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.1rem;
+    color: #000000;
+}

@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+.datePickerWrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.datePickerInput {
+    padding: 8px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    font-family: 'Roboto', sans-serif;
+}
+
+.datePickerInput::placeholder {
+    color: #aaa;
+}
