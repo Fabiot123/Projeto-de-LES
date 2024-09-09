@@ -56,9 +56,6 @@ const clientToForm = (client) => ({
             estado: endereco.end_estado, 
             pais: endereco.end_pais, 
             tipos: getTipos(),
-            // client.end_res, 
-            // client.end_cob, 
-            // client.end_ent, 
         }
     }),
     cartao: client.cli_crt.map((cartao) => ({
@@ -102,11 +99,6 @@ export default function FormClient({ cliente }){
     };
 
     const router = useRouter();
-
-    // const [numEnderecos, setNumEnderecos] = useState([crypto.randomUUID()]);
-    // const [numCartoes, setNumCartoes] = useState([crypto.randomUUID()]);
-
-    // const 
 
     const onSubmit = async (value) => {
 
@@ -174,7 +166,6 @@ export default function FormClient({ cliente }){
             Endereço
         </h2>
         <button type="button" onClick={() => {
-            // setNumEnderecos(prev => [...prev, crypto.randomUUID()])
             handleAddAddress();
         }}>
             Add Endereço
