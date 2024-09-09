@@ -150,7 +150,7 @@ export default function FormClient({ cliente }){
                 
             <DefaultInput name="numtel" label="Número de Telefone" {...register("numerotel")} onInput={(e) => {
                 e.target.value = telMask(e.target.value, watch("tipo") ?? "fixo")
-            }} placeholder="(9)0000-0000"/>
+            }} placeholder="Digite seu Numero de Telefone"/>
 
             <DefaultInput type="date" name="datanasc" label="Data de Nascimento" {...register("dt_nascimento")} />
             {
