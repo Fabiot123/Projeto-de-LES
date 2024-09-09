@@ -5,6 +5,8 @@ import Link from 'next/link';
 import {toast} from "react-toastify"
 import { userService } from '@/services/entities/userService';
 import { useUserQuery } from '@/services/query/userQuery';
+import { formatDate } from '@/libs/datefns'
+
 export default function UserManagement() {
     const {data: users, isLoading, refetch} = useUserQuery();
     // const [users, setUsers] = useState([]);
@@ -45,11 +47,11 @@ toast.error("Cliente excluido!");
                             <td>{user.cli_cpf}</td>
                             <td>{user.cli_gen}</td>
                             <td>({user.cli_tel.tel_ddd}) {user.cli_tel.tel_num}</td>
-                            <td>{user.cli_dt_nasc}</td>
+                            <td>{formatDate(user.cli_dt_nasc)}</td>
                             <td>{user.cli_email}</td>
                             <td>
-                                <Link className={styles.editButton} href={`/Admin/Users/${user.cli_id}`}>Editar</Link>
-                                <button className={styles.deleteButton} onClick={() => {
+                                <Link className={styles.editButton} data-test="update-button" href={`/Admin/Users/${user.cli_id}`}>Editar</Link>
+                                <button className={styles.deleteButton} data-test="delete-button" onClick={() => {
                                     handleDelete(user.cli_id)
                                 }}>Deletar</button>
                             </td>

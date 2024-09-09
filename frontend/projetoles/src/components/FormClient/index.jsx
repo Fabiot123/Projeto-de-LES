@@ -145,7 +145,7 @@ export default function FormClient({ cliente }){
             <DefaultSelect name="tiptel" label="Tipo de Telefone" {...register("tipo")} options={teloption}/>
 
             <DefaultInput name="ddd" label="DDD" {...register("ddd")} onInput={(e) => {
-                e.target.event = dddMask(e.target.value)}}
+                e.target.value = dddMask(e.target.value)}}
                 placeholder="Ex: 11"/>
                 
             <DefaultInput name="numtel" label="Número de Telefone" {...register("numerotel")} onInput={(e) => {
@@ -220,7 +220,7 @@ export default function FormClient({ cliente }){
                         <DefaultInput label="Número do Cartão" {...register(`cartao.[${index}].num`)} placeholder="Digite o Número do Cartão"/>
                         <DefaultInput 
                         label="CVV" 
-                        {...register(`cartao.[${index}.cvc]`)} onInput={(e) => {
+                        {...register(`cartao.[${index}].cvc`)} onInput={(e) => {
                         e.target.value = cvvMask(e.target.value)
                         }} placeholder="Ex: 000"/>
                         <DefaultSelect label="Bandeira do Cartão" {...register(`cartao.[${index}].bandeira`)} options={bandoption}/>
@@ -233,7 +233,7 @@ export default function FormClient({ cliente }){
                 )
             }) 
         }
-        <button >{cliente ? "Salvar" :"Criar"}</button>
+        <button id="criar">{cliente ? "Salvar" :"Criar"}</button>
         </form>
     );   
 }

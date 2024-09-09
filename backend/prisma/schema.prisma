@@ -27,7 +27,7 @@ model Telefone {
   tel_id String @id @default(uuid())
   tel_tipo TipoTel
   tel_ddd String 
-  tel_num String @unique
+  tel_num String
   tel_client Client?
 }
 

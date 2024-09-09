@@ -17,6 +17,7 @@ export default function CheckboxGroup({ value, onChange }) {
                         id="residencia"
                         value="Residência"
                         onChange={handleChange}
+                        checked={value.includes("Residência")}
                         className={styles.checkboxInput}
                     />
                     <label htmlFor="residencia" className={styles.checkboxLabel}>Residência</label>
@@ -29,6 +30,7 @@ export default function CheckboxGroup({ value, onChange }) {
                         id="cobranca"
                         value="Cobrança"
                         onChange={handleChange}
+                        checked={value.includes("Cobrança")}
                         className={styles.checkboxInput}
                     />
                     <label htmlFor="cobranca" className={styles.checkboxLabel}>Cobrança</label>
@@ -41,6 +43,7 @@ export default function CheckboxGroup({ value, onChange }) {
                         id="entrega"
                         value="Entrega"
                         onChange={handleChange}
+                        checked={value.includes("Entrega")}
                         className={styles.checkboxInput}
                     />
                     <label htmlFor="entrega" className={styles.checkboxLabel}>Entrega</label>
