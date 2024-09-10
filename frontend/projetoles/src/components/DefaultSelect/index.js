@@ -3,6 +3,7 @@ import styles from "./DefaultSelect.module.css"
 
 const DefaultSelect = forwardRef(({
     fieldname, fieldlabel, fieldvalue, fieldchange, options,
+    error,
     ...rest
 }, ref) => {
     const renderOption = () =>{
@@ -17,6 +18,7 @@ const DefaultSelect = forwardRef(({
             <select id={fieldname} className={styles.selectField} {...rest} ref={ref}>
                 {renderOption()}
             </select>
+            {!!error && <span className={styles["input-error-message"]}>{error}</span>}
         </div>
     );
 })

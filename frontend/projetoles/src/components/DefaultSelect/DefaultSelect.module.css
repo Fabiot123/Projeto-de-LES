@@ -2,6 +2,9 @@
 
 .selectContainer {
     margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 .selectTitle {
@@ -18,4 +21,7 @@
     border-radius: 20px;
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
+}
+.input-error-message {
+    color: rgb(250, 68, 68);
 }

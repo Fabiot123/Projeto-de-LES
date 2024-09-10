@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./CheckboxGroup.module.css";
 
-export default function CheckboxGroup({ value, onChange }) {
+export default function CheckboxGroup({ value, onChange, error }) {
     const handleChange = (event) => {
         const name = event.target.value;
         onChange(value.includes(name) ? value.filter((item) => item !== name) : [...value, name])
@@ -49,6 +49,7 @@ export default function CheckboxGroup({ value, onChange }) {
                     <label htmlFor="entrega" className={styles.checkboxLabel}>Entrega</label>
                 </div>
             </div>
+            {!!error && <span className={styles["input-error-message"]}>{error}</span>}
         </div>
     );
 }

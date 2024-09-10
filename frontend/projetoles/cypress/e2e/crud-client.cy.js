@@ -1,5 +1,4 @@
 import { fakerPT_BR as faker } from '@faker-js/faker';
-import { format } from 'date-fns';
 
 const formatDateForInput = (isoDate) => {
     const date = new Date(isoDate);

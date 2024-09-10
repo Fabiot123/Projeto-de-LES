@@ -3,6 +3,7 @@ import styles from "./DefaultInput.module.css"
 
 const DefaultInput = forwardRef(({
     fieldname, fieldlabel, fieldvalue, fieldchange, fieldplaceholder,
+    error,
     ...rest
 }, ref) => {
     return (
@@ -17,6 +18,7 @@ const DefaultInput = forwardRef(({
                 ref={ref}
                 className={styles.inputField}
             />
+            {!!error && <span className={styles["input-error-message"]}>{error}</span>}
         </div>
     );
 })

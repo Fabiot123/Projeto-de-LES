@@ -1,7 +1,7 @@
-import React,{useState} from "react";
+import React from "react";
 import styles from "./RadioButtonGroup.module.css";
 
-export default function RadioButtonGroup({ value, onChange }){
+export default function RadioButtonGroup({ value, onChange, error }){
     const handleChange = (event) => {
         onChange(event.target.value);
     };
@@ -17,7 +17,7 @@ export default function RadioButtonGroup({ value, onChange }){
                     checked={value === "Credito"}
                     onChange={handleChange}
                 />
-                <label className={styles.radioLabel}>Crédito</label>
+                <label htmlFor="credito" className={styles.radioLabel}>Crédito</label>
             </div>
             <div className={styles.radioOption}>
             <input
@@ -27,8 +27,9 @@ export default function RadioButtonGroup({ value, onChange }){
                     checked={value === "Debito"}
                     onChange={handleChange}
                 />
-                <label className={styles.radioLabel}>Débito</label>
+                <label htmlFor="debito" className={styles.radioLabel}>Débito</label>
             </div>
+            {!!error && <span className={styles["input-error-message"]}>{error}</span>}
         </div>
     );
 }
