@@ -13,23 +13,23 @@ describe("crud cliente", () => {
         cy.visit("http://localhost:3000/CadastroCliente");
         //dados pessoais
         cy.get('input[name=name]').type(faker.person.fullName())
-        cy.get('input[name=cpf]').type(faker.number.int({
+        cy.get('input[name=cpf]').type(faker.number.int({ 
             min: 10000000000,
             max: 99999999999
           }))
-        cy.get('input[name=ddd]').type(faker.number.int({
+        cy.get('input[name="tel.ddd"]').type(faker.number.int({ 
             min: 10,
             max: 99
         }))
         cy.get('select[name=gender]').select('Masculino')
-        cy.get('select[name=tipo]').select('Fixo')
-        cy.get('input[name=numerotel]').type(faker.number.int({
+        cy.get('select[name="tel.tipo"]').select('Fixo')
+        cy.get('input[name="tel.numero"]').type(faker.number.int({
             min: 10000000000,
             max: 99999999999
           }))
         cy.get('input[name=dt_nascimento]').type(formatDateForInput(faker.date.past({years: 60}).toISOString())) 
-        cy.get('input[name=senha]').type("galinhagalinha")
-        cy.get('input[name=confsenha]').type("galinhagalinha")
+        cy.get('input[name=senha]').type("Senha123@")
+        cy.get('input[name=confsenha]').type("Senha123@")
         cy.get('input[name=email]').type(faker.internet.email())
         //endereco
         cy.get('input[id=residencia]').click()
@@ -61,7 +61,7 @@ describe("crud cliente", () => {
         cy.get('input[name="cartao.[0].validade"]').type("1025")
         cy.get('input[id=credito]').click()
         cy.get('button[id=criar]').click()
-    })  
+    }) 
 
     it("update", () => {
         cy.visit("http://localhost:3000/Admin/Users");

@@ -110,9 +110,9 @@ export default function FormClient({ cliente }){
         const formattedData = {
             ...value,
             tel: {
-                tipo: value.tipo,
-                ddd: value.ddd,
-                numero: value.numerotel,
+                tipo: value.tel.tipo,
+                ddd: value.tel.ddd,
+                numero: value.tel.numero,
             }
         };
     
