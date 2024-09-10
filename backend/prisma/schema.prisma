@@ -61,6 +61,42 @@ model Cartao {
   crt_cli Client? @relation(fields: [crt_cli_id], references: [cli_id], onDelete: Cascade)
 }
 
+model Livros {
+  lvr_id String @id @default(uuid())
+  lvr_atr String
+  lvr_ttl String
+  lvr_ISBN String @unique
+  lvr_ano Int
+  lvr_num_pag Int
+  lvr_snp String
+  lvr_alt Float
+  lvr_lar Float
+  lvr_pes Float
+  lvr_prf Float
+  lvr_stt Boolean
+  lvr_cod_brr String @unique
+  lvr_cat Categorias[]
+  lvr_pdr Produtos[]
+}
+
+model Categorias {
+  cat_id String @id @default(uuid())
+  cat_nome String
+  cat_lvr Livros[]
+}
+
+model Produtos {
+  pdr_id String @id @default(uuid())
+  pdr_qtn Int
+  pdr_lvr_id String
+  pdr_lvr Livros? @relation(fields: [pdr_lvr_id], references: [lvr_id])
+}
+
+model Carrinhos {
+  crn_id String @id @default(uuid())
+}
+
+//enums
 enum TipoCartao {
   Credito
   Debito
