@@ -1,0 +1,85 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+  }
+  
+  .home-container {
+    width: 100%;
+    padding: 20px;
+  }
+  
+  /* Header */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    background-color: #f8f8f8;
+  }
+  
+  .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .nav {
+    display: flex;
+    gap: 20px;
+  }
+  
+  /* Hero Section */
+  .hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-image: url('/images/hero-background.jpg');
+    background-size: cover;
+    color: white;
+    padding: 50px 20px;
+    border-radius: 8px;
+  }
+  
+  .hero-content {
+    max-width: 40%;
+  }
+  
+  .featured-books img {
+    width: 100px;
+    margin-right: 10px;
+  }
+  
+  /* New Arrivals Section */
+  .new-arrivals {
+    margin-top: 40px;
+  }
+  
+  .new-arrivals h2 {
+    margin-bottom: 20px;
+  }
+  
+  .book-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+  }
+  
+  .book-card {
+    text-align: center;
+  }
+  
+  .book-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .book-card p {
+    margin-top: 10px;
+    font-size: 1rem;
+  }
+  
