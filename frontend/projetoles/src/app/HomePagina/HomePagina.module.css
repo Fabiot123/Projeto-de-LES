@@ -1,4 +1,5 @@
-/* styles/Home.module.css */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap');
 
 .homeContainer {
   width: 100%;
@@ -11,10 +12,11 @@
 
 .header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 10px 0;
-  background-color: #d6d5d5;
+  justify-content: space-between; /* Distribui espaço entre os elementos */
+  background-color: #d3d3d3; /* Cor de fundo da barra */
+  padding: 10px 20px; /* Ajusta o espaçamento interno */
+  font-family: 'Roboto', sans-serif;
 }
 
 .logoImage {
@@ -33,6 +35,7 @@
   align-items: center;
   font-size: 1rem;
   color: #ffffff;
+  font-family: 'Roboto', sans-serif;
 }
 
 .nav span {
@@ -44,6 +47,7 @@
   padding: 20px;
   border-radius: 8px;
   margin-bottom: 20px;
+  font-family: 'Roboto', sans-serif;
 }
 
 .heroContent {
@@ -52,16 +56,19 @@
 
 .newArrivals {
   margin-top: 40px;
+  font-family: 'Roboto', sans-serif;
 }
 
 .newArrivals h2 {
   margin-bottom: 20px;
+  font-family: 'Roboto', sans-serif;
 }
 
 .bookGrid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);  /* Ajuste para 5 colunas */
   gap: 20px;
+  font-family: 'Roboto', sans-serif;
 }
 
 .bookCard {
@@ -70,9 +77,34 @@
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   text-align: center;
+  font-family: 'Roboto', sans-serif;
 }
 
 .bookCard p {
   margin: 5px 0;
   font-size: 1rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+.styledButton {
+  background-color: #9e9e9e;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: 'Roboto', sans-serif;
+}
+
+.styledButton:hover {
+  background-color: #000000;
+}
+
+.title {
+  font-size: 2rem; /* Tamanho maior para o título */
+  margin-left: 15px; /* Espaço entre a imagem e o título */
+  color: #000000;
+  font-family: 'Merriweather', sans-serif;
 }

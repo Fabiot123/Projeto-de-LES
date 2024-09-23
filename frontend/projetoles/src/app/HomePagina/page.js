@@ -1,14 +1,14 @@
 // pages/index.js
 import React from 'react';
 import Image from 'next/image';
-import styles from '../HomePagina/HomePagina.module.css';
+import styles from './HomePagina.module.css';
 import Link from 'next/link';
 
 const Home = () => {
   return (
     <div className={styles.homeContainer}>
       {/* Header */}
-      <header className={styles.header}>
+      <div className={styles.header}>
         <div className={styles.logo}>
           <Image 
             src="/images/OIG2.jpg"
@@ -17,16 +17,16 @@ const Home = () => {
             height={130}
             className={styles.logoImage}
           />
+          <h1 className={styles.title}>Livraria Aurora</h1>
         </div>
         <nav className={styles.nav}>
           <Link href="http://localhost:3000">
-            <button>Login</button>
+            <button className={styles.styledButton}>Login</button>
           </Link>
-          <button>Carrinho</button>
+          <button className={styles.styledButton}>Carrinho</button>
         </nav>
-      </header>
+      </div>
         
-      {/* Hero Section */}
       <section className={styles.hero}>
         <div className={styles.heroContent}>
           <h1>Populares!</h1>
@@ -36,7 +36,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* New Arrivals Section */}
       <section className={styles.newArrivals}>
         <h2>Lançamentos</h2>
         <div className={styles.bookGrid}>
