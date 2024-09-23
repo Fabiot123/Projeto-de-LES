@@ -15,6 +15,7 @@
   align-items: center;
   justify-content: space-between; /* Distribui espaço entre os elementos */
   background-color: #d3d3d3; /* Cor de fundo da barra */
+  border-radius: 10px;
   padding: 10px 20px; /* Ajusta o espaçamento interno */
   font-family: 'Roboto', sans-serif;
 }
