@@ -2,6 +2,7 @@
 import React from 'react';
 import Image from 'next/image';
 import styles from '../HomePagina/HomePagina.module.css';
+import Link from 'next/link';
 
 const Home = () => {
   return (
@@ -12,14 +13,16 @@ const Home = () => {
           <Image 
             src="/images/OIG2.jpg"
             alt="Logo"
-            width={125}
-            height={125}
+            width={130}
+            height={130}
             className={styles.logoImage}
           />
         </div>
         <nav className={styles.nav}>
-          <span>Login</span>
-          <span>Carrinho</span>
+          <Link href="http://localhost:3000">
+            <button>Login</button>
+          </Link>
+          <button>Carrinho</button>
         </nav>
       </header>
         
