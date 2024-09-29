@@ -1,5 +1,6 @@
 "use client";
 import {useForm} from "react-hook-form";
+import styles from "./FormLogin.module.css"
 
 export default function FormLogin () {
     const { register, handleSubmit } = useForm()
@@ -7,18 +8,15 @@ export default function FormLogin () {
         console.log(value)
     }
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <div>
-                <div>
-                    <label htmlFor={"email"}>Email</label>
-                    <input type="email" {...register("email")} id="email" />
-                </div>
-                <div>
-                    <label htmlFor={"senha"}>Senha</label>
-                    <input type="password" {...register("senha")} id="senha" />
-                </div>
-            </div>
-            <button type="submit">Login</button>
-        </form>
+        <div className={styles.logincontainer}>
+            <form className={styles.loginform} onSubmit={handleSubmit(onSubmit)}>
+                        <label htmlFor={"email"}>Email</label>
+                        <input type="email" {...register("email")} id="email" />
+                    
+                        <label htmlFor={"senha"}>Senha</label>
+                        <input type="password" {...register("senha")} id="senha" />
+                <button type="submit">Login</button>
+            </form>
+        </div>
     )
 } 

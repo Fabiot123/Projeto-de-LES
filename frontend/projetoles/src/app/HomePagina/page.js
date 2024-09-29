@@ -4,6 +4,7 @@ import {useState} from 'react';
 import Image from 'next/image';
 import styles from './HomePagina.module.css';
 import Link from 'next/link';
+import Cart from '../Cart/page';
 
 const Home = () => {
   const [books, setBooks] = useState([
@@ -45,7 +46,9 @@ const Home = () => {
           <Link href="http://localhost:3000">
             <button className={styles.styledButton}>Login</button>
           </Link>
+          <Link href="http://localhost:3000/Cart">
           <button className={styles.styledButton}>Carrinho</button>
+          </Link>
         </nav>
       </div>
         
