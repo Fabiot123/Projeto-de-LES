@@ -1,7 +1,18 @@
-// pages/checkout.js
+"use client"
+import Link from 'next/link';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import styles from './Checkout.module.css';
 
 export default function Checkout() {
+
+    const handleCheckout = () => {
+        toast.success("Obrigado por sua compra!", {
+            position: "bottom-center", // Defina a posição manualmente
+            autoClose: 3000,
+        });
+      };    
+
   return (
     <div className={styles.checkoutContainer}>
       <h2 className={styles.title}>Checkout</h2>
@@ -40,14 +51,20 @@ export default function Checkout() {
         </div>
 
         <div className={styles.buttonSection}>
-          <button type="submit" className={styles.checkoutButton}>
-            Finalizar Compra
-          </button>
-          <button type="button" className={styles.continueShopping}>
-            Continuar Comprando
-          </button>
+        <Link href="http://localhost:3000/HomePagina">
+            <button type="button" className={styles.checkoutButton} onClick={handleCheckout}>
+                Finalizar Compra
+            </button>
+        </Link>
+
+        <Link href="http://localhost:3000/HomePagina">
+            <button type="button" className={styles.continueShopping}>
+                Continuar Comprando
+            </button>
+        </Link>
         </div>
       </form>
+      <ToastContainer />
     </div>
   );
 }
