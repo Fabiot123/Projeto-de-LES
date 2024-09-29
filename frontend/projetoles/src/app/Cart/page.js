@@ -64,7 +64,9 @@ const Cart = () => {
         <p>Subtotal</p>
         <p>R${subtotal}</p>
       </div>
+      <Link href="http://localhost:3000/CheckOut">
       <button className={styles.checkoutButton}>Checkout</button>
+      </Link>
       <Link href="http://localhost:3000/HomePagina">
         <p className={styles.continueShopping}>Ou Continuar Comprando →</p>
       </Link>
