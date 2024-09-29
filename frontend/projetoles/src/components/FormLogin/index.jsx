@@ -1,6 +1,7 @@
 "use client";
 import {useForm} from "react-hook-form";
 import styles from "./FormLogin.module.css"
+import Link from "next/link";
 
 export default function FormLogin () {
     const { register, handleSubmit } = useForm()
@@ -16,6 +17,9 @@ export default function FormLogin () {
                         <label htmlFor={"senha"}>Senha</label>
                         <input type="password" {...register("senha")} id="senha" />
                 <button type="submit">Login</button>
+                <Link href={"http://localhost:3000/HomePagina"}>
+                <p className={styles.shopping}>Voltar pra Pagina Inicial</p>
+                </Link>
             </form>
         </div>
     )

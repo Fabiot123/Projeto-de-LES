@@ -3,7 +3,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 50vh;
     background-color: #f7f7f7;
   }
   
@@ -50,3 +50,8 @@
     background-color: #0056b3;
   }
   
+  .shopping {
+    text-align: center;
+    margin-top: 10px;
+    color: grey;
+  }
