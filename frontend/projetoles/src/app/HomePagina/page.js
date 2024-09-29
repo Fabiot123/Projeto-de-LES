@@ -1,13 +1,35 @@
-// pages/index.js
+"use client"
 import React from 'react';
+import {useState} from 'react';
 import Image from 'next/image';
 import styles from './HomePagina.module.css';
 import Link from 'next/link';
 
 const Home = () => {
+  const [books, setBooks] = useState([
+    { title: "Example 0", price: "R$45,80", quantity: 0 },
+    { title: "Example 1", price: "R$24", quantity: 0 },
+    { title: "Example 2", price: "R$17", quantity: 0 },
+    { title: "Example 3", price: "R$27", quantity: 0 },
+    { title: "Example 4", price: "R$17", quantity: 0 },
+  ]);
+
+  const increaseQuantity = (index) => {
+    const updatedBooks = [...books];
+    updatedBooks[index].quantity += 1;
+    setBooks(updatedBooks);
+  };
+
+  const decreaseQuantity = (index) => {
+    const updatedBooks = [...books];
+    if (updatedBooks[index].quantity > 0) {
+      updatedBooks[index].quantity -= 1;
+    }
+    setBooks(updatedBooks);
+  };
+
   return (
     <div className={styles.homeContainer}>
-      {/* Header */}
       <div className={styles.header}>
         <div className={styles.logo}>
           <Image 
@@ -39,26 +61,17 @@ const Home = () => {
       <section className={styles.newArrivals}>
         <h2>Lançamentos</h2>
         <div className={styles.bookGrid}>
-          <div className={styles.bookCard}>
-            <p>Example 0</p>
-            <p>R$45,80</p>
-          </div>
-          <div className={styles.bookCard}>
-            <p>Example 1</p>
-            <p>R$24</p>
-          </div>
-          <div className={styles.bookCard}>
-            <p>Example 2</p>
-            <p>R$17</p>
-          </div>
-          <div className={styles.bookCard}>
-            <p>Example 3</p>
-            <p>R$27</p>
-          </div>
-          <div className={styles.bookCard}>
-            <p>Example 4</p>
-            <p>R$17</p>
-          </div>
+          {books.map((book, index) => (
+            <div key={index} className={styles.bookCard}>
+              <h3>{book.title}</h3>
+              <p>{book.price}</p>
+              <div className={styles.buttonGroup}>
+              <button className={styles.button} onClick={() => decreaseQuantity(index)}>-</button>
+              <span>{book.quantity}</span>
+              <button className={styles.button} onClick={() => increaseQuantity(index)}>+</button>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
     </div>
