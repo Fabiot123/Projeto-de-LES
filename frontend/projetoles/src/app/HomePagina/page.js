@@ -1,10 +1,11 @@
 "use client"
 import React from 'react';
-import {useState} from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 import styles from './HomePagina.module.css';
 import Link from 'next/link';
-import Cart from '../Cart/page';
+import useStore from '@/useStore';
+import FormLogin from '@/components/FormLogin';
 
 const Home = () => {
   const [books, setBooks] = useState([
@@ -14,6 +15,8 @@ const Home = () => {
     { title: "Example 3", price: "R$27", quantity: 0 },
     { title: "Example 4", price: "R$17", quantity: 0 },
   ]);
+
+  const addToCart = useStore((state) => state.addToCart);
 
   const increaseQuantity = (index) => {
     const updatedBooks = [...books];
@@ -43,11 +46,11 @@ const Home = () => {
           <h1 className={styles.title}>Livraria Aurora</h1>
         </div>
         <nav className={styles.nav}>
-          <Link href="http://localhost:3000">
+          <Link href="http://localhost:3000/LoginPage">
             <button className={styles.styledButton}>Login</button>
           </Link>
           <Link href="http://localhost:3000/Cart">
-          <button className={styles.styledButton}>Carrinho</button>
+            <button className={styles.styledButton}>Carrinho</button>
           </Link>
         </nav>
       </div>
@@ -69,9 +72,10 @@ const Home = () => {
               <h3>{book.title}</h3>
               <p>{book.price}</p>
               <div className={styles.buttonGroup}>
-              <button className={styles.button} onClick={() => decreaseQuantity(index)}>-</button>
-              <span>{book.quantity}</span>
-              <button className={styles.button} onClick={() => increaseQuantity(index)}>+</button>
+                <button className={styles.button} onClick={() => decreaseQuantity(index)}>-</button>
+                <span>{book.quantity}</span>
+                <button className={styles.button} onClick={() => increaseQuantity(index)}>+</button>
+                <button className={styles.button} onClick={() => addToCart(book)}>Adicionar ao Carrinho</button>
               </div>
             </div>
           ))}
