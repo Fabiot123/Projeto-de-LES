@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap");
 
 .homeContainer {
   width: 100%;
-  max-width: 1920px;  /* Largura máxima */
-  height: 1080px;  /* Altura fixa */
-  margin: 0 auto;  /* Centraliza o conteúdo horizontalmente */
+  max-width: 1920px; /* Largura máxima */
+  height: 1080px; /* Altura fixa */
+  margin: 0 auto; /* Centraliza o conteúdo horizontalmente */
   padding: 20px;
   box-sizing: border-box;
 }
@@ -17,16 +17,16 @@
   background-color: #d3d3d3; /* Cor de fundo da barra */
   border-radius: 10px;
   padding: 10px 20px; /* Ajusta o espaçamento interno */
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .logoImage {
-  object-fit: contain;   /* Garante que a imagem se ajuste sem cortar */
+  object-fit: contain; /* Garante que a imagem se ajuste sem cortar */
 }
 
 .logo {
   display: flex;
-  align-items: center;   /* Alinha a imagem centralmente no header */
+  align-items: center; /* Alinha a imagem centralmente no header */
 }
 
 .nav {
@@ -36,7 +36,7 @@
   align-items: center;
   font-size: 1rem;
   color: #ffffff;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .nav span {
@@ -48,7 +48,7 @@
   padding: 20px;
   border-radius: 8px;
   margin-bottom: 20px;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .heroContent {
@@ -57,19 +57,19 @@
 
 .newArrivals {
   margin-top: 40px;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .newArrivals h2 {
   margin-bottom: 20px;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .bookGrid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);  /* Ajuste para 5 colunas */
+  grid-template-columns: repeat(5, 1fr); /* Ajuste para 5 colunas */
   gap: 20px;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .bookCard {
@@ -78,13 +78,13 @@
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   text-align: center;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .bookCard p {
   margin: 5px 0;
   font-size: 1rem;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .styledButton {
@@ -96,7 +96,7 @@
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .styledButton:hover {
@@ -107,5 +107,18 @@
   font-size: 2rem; /* Tamanho maior para o título */
   margin-left: 15px; /* Espaço entre a imagem e o título */
   color: #000000;
-  font-family: 'Merriweather', sans-serif;
+  font-family: "Merriweather", sans-serif;
+}
+
+.button {
+  border-radius: 8px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #e0e0e0;
 }

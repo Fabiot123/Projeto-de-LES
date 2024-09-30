@@ -1,11 +1,10 @@
-"use client"
-import React from 'react';
-import { useState } from 'react';
-import Image from 'next/image';
-import styles from './HomePagina.module.css';
-import Link from 'next/link';
-import useStore from '@/useStore';
-import FormLogin from '@/components/FormLogin';
+"use client";
+import React from "react";
+import { useState } from "react";
+import Image from "next/image";
+import styles from "./HomePagina.module.css";
+import Link from "next/link";
+import useStore from "@/useStore";
 
 const Home = () => {
   const [books, setBooks] = useState([
@@ -36,7 +35,7 @@ const Home = () => {
     <div className={styles.homeContainer}>
       <div className={styles.header}>
         <div className={styles.logo}>
-          <Image 
+          <Image
             src="/images/OIG2.jpg"
             alt="Logo"
             width={130}
@@ -54,13 +53,11 @@ const Home = () => {
           </Link>
         </nav>
       </div>
-        
+
       <section className={styles.hero}>
         <div className={styles.heroContent}>
           <h1>Populares!</h1>
-          <p>
-            Livros mais vendidos da nossa livraria!
-          </p>
+          <p>Livros mais vendidos da nossa livraria!</p>
         </div>
       </section>
 
@@ -72,10 +69,25 @@ const Home = () => {
               <h3>{book.title}</h3>
               <p>{book.price}</p>
               <div className={styles.buttonGroup}>
-                <button className={styles.button} onClick={() => decreaseQuantity(index)}>-</button>
+                <button
+                  className={styles.button}
+                  onClick={() => decreaseQuantity(index)}
+                >
+                  -
+                </button>
                 <span>{book.quantity}</span>
-                <button className={styles.button} onClick={() => increaseQuantity(index)}>+</button>
-                <button className={styles.button} onClick={() => addToCart(book)}>Adicionar ao Carrinho</button>
+                <button
+                  className={styles.button}
+                  onClick={() => increaseQuantity(index)}
+                >
+                  +
+                </button>
+                <button
+                  className={styles.button}
+                  onClick={() => addToCart(book)}
+                >
+                  Adicionar ao Carrinho
+                </button>
               </div>
             </div>
           ))}
