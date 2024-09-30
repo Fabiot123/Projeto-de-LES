@@ -1,17 +1,8 @@
 "use client"
 import Link from 'next/link';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import styles from './Checkout.module.css';
 
-export default function Checkout() {
-
-    const handleCheckout = () => {
-        toast.success("Obrigado por sua compra!", {
-            position: "bottom-center", // Defina a posição manualmente
-            autoClose: 3000,
-        });
-      };    
+export default function Checkout() {    
 
   return (
     <div className={styles.checkoutContainer}>
@@ -64,7 +55,6 @@ export default function Checkout() {
         </Link>
         </div>
       </form>
-      <ToastContainer />
     </div>
   );
 }
