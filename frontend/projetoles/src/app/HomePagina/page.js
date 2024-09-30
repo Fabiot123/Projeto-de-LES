@@ -54,13 +54,6 @@ const Home = () => {
         </nav>
       </div>
 
-      <section className={styles.hero}>
-        <div className={styles.heroContent}>
-          <h1>Populares!</h1>
-          <p>Livros mais vendidos da nossa livraria!</p>
-        </div>
-      </section>
-
       <section className={styles.newArrivals}>
         <h2>Lançamentos</h2>
         <div className={styles.bookGrid}>

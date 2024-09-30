@@ -1,14 +1,16 @@
-"use client"
-import Link from 'next/link';
-import styles from './Checkout.module.css';
+"use client";
+import Link from "next/link";
+import styles from "./Checkout.module.css";
 
-export default function Checkout() {    
+export default function Checkout() {
+  const handleCheckout = () => {
+    console.log("Finalizando a compra");
+  };
 
   return (
     <div className={styles.checkoutContainer}>
       <h2 className={styles.title}>Checkout</h2>
       <form className={styles.checkoutForm}>
-        
         {/* Seção de Cupom */}
         <div className={styles.section}>
           <h3 className={styles.sectionTitle}>Adicionar Cupom</h3>
@@ -27,32 +29,51 @@ export default function Checkout() {
           <h3 className={styles.sectionTitle}>Escolha o Cartão de Crédito</h3>
           <div className={styles.cardOptions}>
             <label className={styles.label}>
-              <input type="radio" name="card" value="card1" className={styles.radioInput} />
+              <input
+                type="radio"
+                name="card"
+                value="card1"
+                className={styles.radioInput}
+              />
               Cartão de Crédito 1 - Termina em 1234
             </label>
             <label className={styles.label}>
-              <input type="radio" name="card" value="card2" className={styles.radioInput} />
+              <input
+                type="radio"
+                name="card"
+                value="card2"
+                className={styles.radioInput}
+              />
               Cartão de Crédito 2 - Termina em 5678
             </label>
             <label className={styles.label}>
-              <input type="radio" name="card" value="card3" className={styles.radioInput} />
+              <input
+                type="radio"
+                name="card"
+                value="card3"
+                className={styles.radioInput}
+              />
               Adicionar Novo Cartão
             </label>
           </div>
         </div>
 
         <div className={styles.buttonSection}>
-        <Link href="http://localhost:3000/HomePagina">
-            <button type="button" className={styles.checkoutButton} onClick={handleCheckout}>
-                Finalizar Compra
+          <Link href="http://localhost:3000/HomePagina">
+            <button
+              type="button"
+              className={styles.checkoutButton}
+              onClick={handleCheckout}
+            >
+              Finalizar Compra
             </button>
-        </Link>
+          </Link>
 
-        <Link href="http://localhost:3000/HomePagina">
+          <Link href="http://localhost:3000/HomePagina">
             <button type="button" className={styles.continueShopping}>
-                Continuar Comprando
+              Continuar Comprando
             </button>
-        </Link>
+          </Link>
         </div>
       </form>
     </div>
