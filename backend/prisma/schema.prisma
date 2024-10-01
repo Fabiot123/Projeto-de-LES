@@ -9,7 +9,7 @@ datasource db {
 }
 
 model Client {
-  cli_id String @id @unique @default(uuid())
+  cli_id String @id @default(uuid())
   cli_name String @unique
   cli_gen Genero 
   cli_tel_id String @unique
@@ -25,7 +25,7 @@ model Client {
 }
 
 model Telefone {
-  tel_id String @id @unique @default(uuid())
+  tel_id String @id @default(uuid())
   tel_tipo TipoTel
   tel_ddd String 
   tel_num String
@@ -33,7 +33,7 @@ model Telefone {
 }
 
 model Endereco {
-  end_id String @id @unique @default(uuid())
+  end_id String @id @default(uuid())
   end_resi TipoResidencia
   end_tlogra TipoLograd
   end_logra String
@@ -51,7 +51,7 @@ model Endereco {
 }
 
 model Cartao {
-  crt_id String @id @unique @default(uuid())
+  crt_id String @id @default(uuid())
   crt_num String @unique
   crt_nome String
   crt_band TipoBandeira
@@ -63,7 +63,7 @@ model Cartao {
 }
 
 model Livros {
-  lvr_id String @id @unique @default(uuid())
+  lvr_id String @id @default(uuid())
   lvr_atr String
   lvr_ttl String
   lvr_ISBN String @unique
@@ -81,13 +81,13 @@ model Livros {
 }
 
 model Categorias {
-  cat_id String @id @unique @default(uuid())
+  cat_id String @id @default(uuid())
   cat_nome String
   cat_lvr Livros[]
 }
 
 model Produtos {
-  pdr_id String @id @unique @default(uuid())
+  pdr_id String @id @default(uuid())
   pdr_qtn Int
   pdr_lvr_id String
   pdr_lvr Livros? @relation(fields: [pdr_lvr_id], references: [lvr_id])
@@ -96,14 +96,14 @@ model Produtos {
 }
 
 model Carrinhos {
-  crn_id String @id @unique @default(uuid())
+  crn_id String @id @default(uuid())
   crn_icr ItemCarrinhos[]
   crn_cli_id String
   crn_cli Client @relation(fields: [crn_cli_id], references: [cli_id])
 }
 
 model ItemCarrinhos {
-  icr_id String @id @unique @default(uuid())
+  icr_id String @id @default(uuid())
   icr_qtn Int
   icr_pdr_id String
   icr_pdr Produtos? @relation(fields: [icr_pdr_id], references: [pdr_id])
@@ -112,7 +112,7 @@ model ItemCarrinhos {
 }
 
 model Vendas {
-  vnd_id String @id @unique @default(uuid())
+  vnd_id String @id @default(uuid())
   vnd_dt_ent DateTime
   vnd_status TipoStatusVendas
   vnd_pdr Produtos[]
@@ -159,8 +159,8 @@ enum TipoBandeira {
 }
 
 enum TipoStatusVendas {
-  Realizado
-  Rejeitado
-  Transporte
+  Pagamento_Realizado
+  Pagamento_Rejeitado
+  Em_Transporte
   Entregue
 }
