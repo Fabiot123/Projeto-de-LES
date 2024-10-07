@@ -26,6 +26,7 @@ import {
 import { addressEmpty, creditCardEmpty } from "./empty";
 import { userService } from "@/services/entities/userService";
 import { clientschema } from "@/utils/validation";
+import { clienteditschema } from "@/utils/validantionedit";
 import { zodResolver } from "@hookform/resolvers/zod";
 const defaultEmptyValues = {
   endereco: [addressEmpty],
@@ -92,7 +93,9 @@ export default function FormClient({ cliente }) {
     handleSubmit,
   } = useForm({
     defaultValues: cliente ? clientToForm(cliente) : defaultEmptyValues,
-    resolver: zodResolver(clientschema),
+    resolver: cliente
+      ? zodResolver(clienteditschema)
+      : zodResolver(clientschema),
     mode: "onChange",
   });
 
@@ -204,7 +207,7 @@ export default function FormClient({ cliente }) {
           label="Número de Telefone"
           {...register("tel.numero")}
           onInput={(e) => {
-            e.target.value = telMask(e.target.value, watch("tipo") ?? "fixo");
+            e.target.value = telMask(e.target.value, watch("tipo") ?? "Fixo");
           }}
           error={errors.tel?.numero?.message}
           placeholder="Digite seu Numero de Telefone"
@@ -217,7 +220,7 @@ export default function FormClient({ cliente }) {
           {...register("dt_nascimento")}
           error={errors.dt_nascimento?.message}
         />
-        {
+        {!cliente && (
           <>
             <DefaultInput
               name="senha"
@@ -243,7 +246,7 @@ export default function FormClient({ cliente }) {
               error={errors.email?.message}
             />
           </>
-        }
+        )}
       </div>
 
       <h2 className={styles.formSection}>Endereço</h2>
