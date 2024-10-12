@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import styles from "./VendasClient.module.css";
+import styles from "./VendasManagement.module.css";
 import Link from "next/link";
 import { toast } from "react-toastify";
 import { useEffect } from "react";
