@@ -9,7 +9,6 @@ import { formatDate } from "@/libs/datefns";
 
 export default function UserManagement() {
   const { data: users, isLoading, refetch } = useUserQuery();
-  // const [users, setUsers] = useState([]);
   console.log(users);
   const handleDelete = async (id) => {
     await userService.delete(id);
@@ -30,15 +29,6 @@ export default function UserManagement() {
             <th>Email</th>
             <th>Ações</th>
           </tr>
-          {/* <tr>
-                        <th><input /></th>
-                        <th><input /></th>
-                        <th><input /></th>
-                        <th><input /></th> 
-                        <th><input /></th>
-                        <th><input /></th>
-                        <th><button>Pesquisar</button></th>
-                    </tr> */}
         </thead>
         <tbody>
           {users?.map((user, index) => (
