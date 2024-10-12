@@ -1,44 +1,36 @@
 "use client";
 import React from "react";
-import styles from "./UserManagement.module.css";
+import styles from "./VendasClient.module.css";
 import Link from "next/link";
 import { toast } from "react-toastify";
-import { userService } from "@/services/entities/userService";
-import { useUserQuery } from "@/services/query/userQuery";
+import { useEffect } from "react";
 import { formatDate } from "@/libs/datefns";
+import { api } from "@/libs/axios";
 
-export default function UserManagement() {
-  const { data: users, isLoading, refetch } = useUserQuery();
-  // const [users, setUsers] = useState([]);
-  console.log(users);
-  const handleDelete = async (id) => {
-    await userService.delete(id);
-    refetch();
-    toast.error("Cliente excluido!");
-  };
+export default function VendasClient() {
+  useEffect(() => {
+    const vendasQuery = async () => {
+      try {
+        const { data } = await api.post("/authentic");
+        console.log(data);
+      } catch (e) {
+        console.error("Erro", e);
+      }
+    };
+
+    vendasQuery();
+  });
+
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>Usuários</h2>
+      <h2 className={styles.title}>Vendas</h2>
       <table className={styles.table}>
         <thead>
           <tr>
-            <th>Nome</th>
-            <th>CPF</th>
-            <th>Gênero</th>
-            <th>Telefone</th>
-            <th>Data de Nacimento</th>
-            <th>Email</th>
-            <th>Ações</th>
+            <th>Produtos</th>
+            <th>Quantidade</th>
+            <th>Status</th>
           </tr>
-          {/* <tr>
-                        <th><input /></th>
-                        <th><input /></th>
-                        <th><input /></th>
-                        <th><input /></th> 
-                        <th><input /></th>
-                        <th><input /></th>
-                        <th><button>Pesquisar</button></th>
-                    </tr> */}
         </thead>
         <tbody>
           {users?.map((user, index) => (

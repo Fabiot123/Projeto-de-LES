@@ -5,7 +5,7 @@ import useStore from "@/useStore";
 import styles from "./HomePagina.module.css";
 import Image from "next/image";
 import Link from "next/link";
-import { api } from "@/libs/axios"
+import { api } from "@/libs/axios";
 
 const Home = () => {
   const [books, setBooks] = useState([]);
@@ -14,8 +14,8 @@ const Home = () => {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const { data } = await api.get("/products");
-      
+        const { data } = await api.get("/livros");
+        console.log(data);
         setBooks(data);
       } catch (error) {
         console.error("Erro ao buscar os livros:", error);
@@ -67,8 +67,8 @@ const Home = () => {
         <div className={styles.bookGrid}>
           {books.map((book, index) => (
             <div key={index} className={styles.bookCard}>
-              <h3>{book.title}</h3>
-              <p>{book.price}</p>
+              <h3>{book.lvr_ttl}</h3>
+              <p>{book.lvr_prc}</p>
               <div className={styles.buttonGroup}>
                 <button
                   className={styles.button}

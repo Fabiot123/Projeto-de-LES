@@ -75,6 +75,7 @@ model Livros {
   lvr_pes Float
   lvr_prf Float
   lvr_stt Boolean
+  lvr_prc Float
   lvr_cod_brr String @unique
   lvr_cat Categorias[]
   lvr_pdr Produtos[]
