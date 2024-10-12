@@ -5,16 +5,17 @@ import useStore from "@/useStore";
 import styles from "./HomePagina.module.css";
 import Image from "next/image";
 import Link from "next/link";
+import { api } from "@/libs/axios"
 
 const Home = () => {
   const [books, setBooks] = useState([]);
-  const addToCart = useStore((state) => state.addToCart);
+  const { addToCart } = useStore();
 
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await fetch("http://localhost:3001/products");
-        const data = await response.json();
+        const { data } = await api.get("/products");
+      
         setBooks(data);
       } catch (error) {
         console.error("Erro ao buscar os livros:", error);
