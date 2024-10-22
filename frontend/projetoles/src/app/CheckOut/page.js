@@ -11,7 +11,6 @@ export default function Checkout() {
     <div className={styles.checkoutContainer}>
       <h2 className={styles.title}>Checkout</h2>
       <form className={styles.checkoutForm}>
-        {/* Seção de Cupom */}
         <div className={styles.section}>
           <h3 className={styles.sectionTitle}>Adicionar Cupom</h3>
           <input
@@ -24,7 +23,6 @@ export default function Checkout() {
           </button>
         </div>
 
-        {/* Seção de Cartão de Crédito */}
         <div className={styles.section}>
           <h3 className={styles.sectionTitle}>Escolha o Cartão de Crédito</h3>
           <div className={styles.cardOptions}>
@@ -66,12 +64,6 @@ export default function Checkout() {
               onClick={handleCheckout}
             >
               Finalizar Compra
-            </button>
-          </Link>
-
-          <Link href="http://localhost:3000/HomePagina">
-            <button type="button" className={styles.continueShopping}>
-              Continuar Comprando
             </button>
           </Link>
         </div>

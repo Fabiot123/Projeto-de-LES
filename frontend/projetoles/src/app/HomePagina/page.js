@@ -11,6 +11,8 @@ const Home = () => {
   const [books, setBooks] = useState([]);
   const { addToCart } = useStore();
 
+  const [b_count, setBCount] = useState({});
+
   useEffect(() => {
     const fetchBooks = async () => {
       try {
@@ -26,17 +28,27 @@ const Home = () => {
   }, []);
 
   const increaseQuantity = (index) => {
-    const updatedBooks = [...books];
-    updatedBooks[index].quantity += 1;
-    setBooks(updatedBooks);
+    const updatedBooks = { ...b_count };
+    if (updatedBooks[index]) {
+      updatedBooks[index] += 1;
+    } else {
+      updatedBooks[index] = 1;
+    }
+    setBCount(updatedBooks);
   };
 
   const decreaseQuantity = (index) => {
-    const updatedBooks = [...books];
-    if (updatedBooks[index].quantity > 0) {
-      updatedBooks[index].quantity -= 1;
+    const updatedBooks = { ...b_count };
+    if (updatedBooks[index]) {
+      if (updatedBooks[index] > 0) {
+        updatedBooks[index] -= 1;
+      } else {
+        updatedBooks[index] = 0;
+      }
+    } else {
+      updatedBooks[index] = 0;
     }
-    setBooks(updatedBooks);
+    setBCount(updatedBooks);
   };
 
   return (
@@ -72,20 +84,20 @@ const Home = () => {
               <div className={styles.buttonGroup}>
                 <button
                   className={styles.button}
-                  onClick={() => decreaseQuantity(index)}
+                  onClick={() => decreaseQuantity(book.lvr_id)}
                 >
                   -
                 </button>
-                <span>{book.quantity || 0}</span>
+                <span>{b_count[book.lvr_id] || 0}</span>
                 <button
                   className={styles.button}
-                  onClick={() => increaseQuantity(index)}
+                  onClick={() => increaseQuantity(book.lvr_id)}
                 >
                   +
                 </button>
                 <button
                   className={styles.button}
-                  onClick={() => addToCart(book)}
+                  onClick={() => addToCart(book, b_count[book.lvr_id])}
                 >
                   Adicionar ao Carrinho
                 </button>

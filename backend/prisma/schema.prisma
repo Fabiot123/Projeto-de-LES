@@ -160,8 +160,16 @@ enum TipoBandeira {
 }
 
 enum TipoStatusVendas {
+  Em_Aberto
+  Aguardando_Pagamento
   Pagamento_Realizado
   Pagamento_Rejeitado
+  Finalizado
   Em_Transporte
   Entregue
+  Troca_Solicitada
+  Em_Troca
+  Troca_Recebida
+  Troca_Finalizada
+  Troca_Negada
 }

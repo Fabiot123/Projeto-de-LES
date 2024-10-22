@@ -15,6 +15,7 @@ import {
   cepMask,
   cvvMask,
   dtvalMask,
+  cardMask,
 } from "@/utils/masks";
 import {
   bandoption,
@@ -377,6 +378,9 @@ export default function FormClient({ cliente }) {
             <DefaultInput
               label="Número do Cartão"
               {...register(`cartao.[${index}].num`)}
+              onInput={(e) => {
+                e.target.value = cardMask(e.target.value);
+              }}
               placeholder="Digite o Número do Cartão"
               error={errors.cartao?.[index]?.num?.message}
             />
