@@ -4,8 +4,35 @@ import styles from "./Checkout.module.css";
 import useStore from "@/useStore";
 
 export default function Checkout() {
-  const handleCheckout = () => {
+  const handleCheckout = async () => {
     console.log("Finalizando a compra");
+
+    const { cart } = useStore.getState();
+
+    const checkoutData = {
+      cart: cart,
+      subtotal: parseFloat(subtotal),
+      clientId: "id-do-cliente",
+    };
+
+    try {
+      const response = await fetch("/api/checkout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(checkoutData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Erro ao finalizar compra");
+      }
+
+      const data = await response.json();
+      console.log("Compra finalizada com sucesso:", data);
+    } catch (error) {
+      console.error("Erro:", error);
+    }
   };
 
   const { cart } = useStore();

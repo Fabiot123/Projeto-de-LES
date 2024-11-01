@@ -3,10 +3,10 @@ import { Injectable } from '@nestjs/common';
 import { prisma } from '../lib/prisma';
 
 @Injectable()
-export class VendasService {
+export class CarrinhosService {
   async getAllVendas() {
-    return await prisma.vendas.findMany();
+    return await prisma.carrinhos.findMany();
   }
 }
 
-module.exports = { VendasService };
+module.exports = { CarrinhosService };
