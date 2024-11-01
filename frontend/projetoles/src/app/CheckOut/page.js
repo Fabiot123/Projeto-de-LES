@@ -44,15 +44,6 @@ export default function Checkout() {
               />
               Cartão de Crédito 2 - Termina em 5678
             </label>
-            <label className={styles.label}>
-              <input
-                type="radio"
-                name="card"
-                value="card3"
-                className={styles.radioInput}
-              />
-              Adicionar Novo Cartão
-            </label>
           </div>
         </div>
 

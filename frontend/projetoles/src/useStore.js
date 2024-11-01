@@ -6,6 +6,7 @@ const useStore = create((set) => ({
     set((state) => ({
       cart: [...state.cart, { ...book, quantity }],
     })),
+
   addQuantity: (book, quantity) =>
     set((state) => ({
       cart: state.cart

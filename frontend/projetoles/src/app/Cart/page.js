@@ -64,10 +64,10 @@ const Cart = () => {
               <button onClick={() => increaseQuantity(item)}>+</button>
               <p>R${(item.lvr_prc * item.quantity).toFixed(2)}</p>
               <button
-                onClick={() => removeItem(item)}
+                onClick={() => removeItem(item.lvr_id)}
                 className={styles.removeButton}
               >
-                Remover
+                Remover Todos os Items
               </button>
             </div>
           </li>
