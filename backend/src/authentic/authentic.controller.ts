@@ -1,5 +1,11 @@
 /* eslint-disable prettier/prettier */
-import { Controller, Post, Body } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  HttpException,
+  HttpStatus,
+} from '@nestjs/common';
 import { AuthenticService } from './authentic.service';
 
 @Controller('authentic')
@@ -9,11 +15,10 @@ export class AuthenticController {
   @Post()
   async login(@Body() body: any) {
     try {
-      return await this.authenticService.login(body);
+      const user = await this.authenticService.login(body);
+      return { message: 'Login bem-sucedido', user };
     } catch (e) {
-      return { Error: e };
+      throw new HttpException(e.message, HttpStatus.UNAUTHORIZED);
     }
   }
 }
-
-module.exports = { AuthenticController };

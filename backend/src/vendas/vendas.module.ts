@@ -1,11 +1,11 @@
 /* eslint-disable prettier/prettier */
 import { Module } from '@nestjs/common';
 import { VendasController } from './vendas.controller';
-import { VendasService } from './vendas.service';
+import { CarrinhosService } from './vendas.service';
 
 @Module({
   imports: [],
   controllers: [VendasController],
-  providers: [VendasService],
+  providers: [CarrinhosService],
 })
 export class VendasModule {}

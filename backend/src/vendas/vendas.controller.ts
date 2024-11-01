@@ -1,10 +1,10 @@
 /* eslint-disable prettier/prettier */
 import { Controller, Get } from '@nestjs/common';
-import { VendasService } from './vendas.service';
+import { CarrinhosService } from './vendas.service';
 
 @Controller('livros')
 export class VendasController {
-  constructor(private readonly vendasService: VendasService) {}
+  constructor(private readonly vendasService: CarrinhosService) {}
 
   @Get()
   async findAll() {
