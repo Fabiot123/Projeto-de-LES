@@ -11,10 +11,7 @@ export class AuthenticService {
       },
     });
     if (!login) {
-      throw new Error('Usuario nao existe');
-    }
-    if (login.cli_senha != data.senha) {
-      throw new Error('Senha nao corresponde com usuario');
+      throw new Error('Email nao existe');
     }
     return login;
   }

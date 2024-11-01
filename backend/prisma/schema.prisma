@@ -78,7 +78,7 @@ model Livros {
   lvr_prc Float
   lvr_cod_brr String @unique
   lvr_cat Categorias[]
-  lvr_pdr Produtos[]
+  lvr_icr ItemCarrinhos[]
 }
 
 model Categorias {
@@ -87,36 +87,21 @@ model Categorias {
   cat_lvr Livros[]
 }
 
-model Produtos {
-  pdr_id String @id @default(uuid())
-  pdr_qtn Int
-  pdr_lvr_id String
-  pdr_lvr Livros? @relation(fields: [pdr_lvr_id], references: [lvr_id])
-  pdr_vnd Vendas[]
-  pdr_icr ItemCarrinhos[]
-}
-
 model Carrinhos {
   crn_id String @id @default(uuid())
   crn_icr ItemCarrinhos[]
   crn_cli_id String
   crn_cli Client @relation(fields: [crn_cli_id], references: [cli_id])
+  crn_status TipoStatusVendas
 }
 
 model ItemCarrinhos {
   icr_id String @id @default(uuid())
   icr_qtn Int
-  icr_pdr_id String
-  icr_pdr Produtos? @relation(fields: [icr_pdr_id], references: [pdr_id])
+  icr_lvr Livros @relation(fields: [icr_lvr_id], references: [lvr_id])
+  icr_lvr_id String
+  icr_crn Carrinhos @relation(fields: [icr_crn_id], references: [crn_id])
   icr_crn_id String
-  icr_crn Carrinhos? @relation(fields: [icr_crn_id], references: [crn_id])
-}
-
-model Vendas {
-  vnd_id String @id @default(uuid())
-  vnd_dt_ent DateTime
-  vnd_status TipoStatusVendas
-  vnd_pdr Produtos[]
 }
 
 //enums

@@ -6,7 +6,7 @@ import Link from "next/link";
 import useStore from "@/useStore";
 
 const Cart = () => {
-  const { addToCart, addQuantity, cart } = useStore();
+  const { addQuantity, cart } = useStore();
 
   const removeItem = (index) => {
     let { quantity, ...rest } = index;
