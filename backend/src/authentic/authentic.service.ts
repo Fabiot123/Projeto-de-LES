@@ -7,9 +7,10 @@ export class AuthenticService {
   async login(data: any) {
     const login = await prisma.client.findFirst({
       where: {
-        cli_email: data.email,
+        cli_email: data.email || '',
       },
     });
+    console.log(login);
     if (!login) {
       throw new Error('Email nao existe');
     }

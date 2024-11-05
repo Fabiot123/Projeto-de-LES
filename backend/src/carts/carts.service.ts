@@ -28,3 +28,5 @@ export class CheckoutService {
     return createdCart;
   }
 }
+
+module.exports = { CheckoutService };

@@ -14,6 +14,7 @@ export class AuthenticController {
 
   @Post()
   async login(@Body() body: any) {
+    console.log(body);
     try {
       const user = await this.authenticService.login(body);
       return { message: 'Login bem-sucedido', user };

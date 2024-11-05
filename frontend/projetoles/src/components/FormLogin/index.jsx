@@ -3,14 +3,18 @@ import { useForm } from "react-hook-form";
 import styles from "./FormLogin.module.css";
 import Link from "next/link";
 import { api } from "@/libs/axios";
+import { useRouter } from "next/navigation";
 
 export default function FormLogin() {
   const { register, handleSubmit } = useForm();
+  const router = useRouter();
 
   async function onSubmit(values) {
     try {
       const { data } = await api.post("/authentic", values);
       console.log("Login bem-sucedido:", data);
+      localStorage.setItem("user", JSON.stringify(data.user));
+      router.push("/HomePagina");
     } catch (error) {
       console.error("Erro no login:", error.response?.data || error.message);
       alert(
@@ -25,17 +29,8 @@ export default function FormLogin() {
       <form className={styles.loginform} onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor={"email"}>Email</label>
         <input type="email" {...register("email")} id="email" required />
-
-        <label htmlFor={"password"}>Senha</label>
-        <input
-          type="password"
-          {...register("password")}
-          id="password"
-          required
-        />
-
         <button type="submit">Login</button>
-        <Link href={"http://localhost:3000/HomePagina"}>
+        <Link href={"/HomePagina"}>
           <p className={styles.shopping}>Voltar pra Pagina Inicial</p>
         </Link>
       </form>
