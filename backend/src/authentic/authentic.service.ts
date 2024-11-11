@@ -9,6 +9,9 @@ export class AuthenticService {
       where: {
         cli_email: data.email || '',
       },
+      include: {
+        cli_crt: true,
+      },
     });
     console.log(login);
     if (!login) {

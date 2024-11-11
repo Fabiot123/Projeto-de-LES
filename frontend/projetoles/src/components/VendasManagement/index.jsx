@@ -2,7 +2,6 @@
 import React from "react";
 import styles from "./VendasManagement.module.css";
 import Link from "next/link";
-import { toast } from "react-toastify";
 import { useEffect } from "react";
 import { formatDate } from "@/libs/datefns";
 import { api } from "@/libs/axios";

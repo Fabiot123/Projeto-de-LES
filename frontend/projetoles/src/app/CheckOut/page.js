@@ -1,9 +1,23 @@
 "use client";
-import Link from "next/link";
 import styles from "./Checkout.module.css";
 import useStore from "@/useStore";
+import { api } from "@/libs/axios";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Checkout() {
+  const { cart } = useStore();
+  const router = useRouter();
+  const [user, setUser] = useState();
+
+  useEffect(() => {
+    const usuario = localStorage.getItem("user");
+
+    const usuarioParse = JSON.parse(usuario);
+
+    setUser(usuarioParse);
+  }, []);
+
   const handleCheckout = async () => {
     console.log("Finalizando a compra");
 
@@ -12,17 +26,11 @@ export default function Checkout() {
     const checkoutData = {
       cart: cart,
       subtotal: parseFloat(subtotal),
-      clientId: "id-do-cliente",
+      clientId: user.cli_id,
     };
 
     try {
-      const response = await fetch("/api/checkout", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(checkoutData),
-      });
+      const response = await api.post("/checkout", checkoutData);
 
       if (!response.ok) {
         throw new Error("Erro ao finalizar compra");
@@ -34,8 +42,6 @@ export default function Checkout() {
       console.error("Erro:", error);
     }
   };
-
-  const { cart } = useStore();
 
   const subtotal =
     cart.length > 0
@@ -80,19 +86,30 @@ export default function Checkout() {
 
         <div className={styles.section}>
           <h3 className={styles.sectionTitle}>Escolha o Cartão de Crédito</h3>
+          {user?.cli_crt?.map((user) => (
+            <div className={styles.wrapper}>
+              <p>Numero do Cartao</p>
+              <p>Bandeira</p>
+              <p>Validade</p>
+              <p>{user.crt_num}</p>
+              <p>{user.crt_band} </p>
+              <p> {user.crt_validade}</p>
+            </div>
+          ))}
           <div className={styles.cardOptions}> </div>
         </div>
 
         <div className={styles.buttonSection}>
-          <Link href="http://localhost:3000/HomePagina">
-            <button
-              type="button"
-              className={styles.checkoutButton}
-              onClick={handleCheckout}
-            >
-              Finalizar Compra
-            </button>
-          </Link>
+          <button
+            type="button"
+            className={styles.checkoutButton}
+            onClick={() => {
+              handleCheckout();
+              router.push("/HomePagina");
+            }}
+          >
+            Finalizar Compra
+          </button>
         </div>
       </form>
     </div>

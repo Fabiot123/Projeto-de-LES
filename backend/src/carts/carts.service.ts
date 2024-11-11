@@ -1,15 +1,13 @@
 /* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from '../lib/prisma.service';
+import { prisma } from '../lib/prisma';
 
 @Injectable()
 export class CheckoutService {
-  constructor(private readonly prisma: PrismaService) {}
-
   async saveCheckout(cartData: any) {
     const { cart, clientId } = cartData;
 
-    const createdCart = await this.prisma.carrinhos.create({
+    const createdCart = await prisma.carrinhos.create({
       data: {
         crn_cli_id: clientId,
         crn_status: 'Em_Aberto',

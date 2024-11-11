@@ -95,3 +95,11 @@
   font-weight: bold;
   margin-top: 20px;
 }
+
+.wrapper {
+  display: grid;
+  padding: 20px;
+  grid-template-columns: 1fr 1fr 1fr;
+  row-gap: 5px;
+  font-family: "Roboto", sans-serif;
+}
