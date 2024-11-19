@@ -4,6 +4,11 @@ import useStore from "@/useStore";
 import { api } from "@/libs/axios";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
+
+const notify = () => {
+  toast.success("Compra Realizada com Sucesso!");
+};
 
 export default function Checkout() {
   const { cart } = useStore();
@@ -86,24 +91,60 @@ export default function Checkout() {
 
         <div className={styles.section}>
           <h3 className={styles.sectionTitle}>Escolha o Cartão de Crédito</h3>
-          {user?.cli_crt?.map((user) => (
-            <div className={styles.wrapper}>
-              <p>Numero do Cartao</p>
-              <p>Bandeira</p>
-              <p>Validade</p>
-              <p>{user.crt_num}</p>
-              <p>{user.crt_band} </p>
-              <p> {user.crt_validade}</p>
+          {user?.cli_crt?.map((cartao) => (
+            <div key={cartao.crt_num} className={styles.wrapper}>
+              <input
+                type="checkbox"
+                id={cartao.crt_num}
+                name="cartaoCredito"
+                value={cartao.crt_num}
+              />
+              <label htmlFor={cartao.crt_num}>
+                {cartao.crt_band} - {cartao.crt_validade}
+              </label>
+              <input
+                type="number"
+                name={`quantia_${cartao.crt_num}`}
+                placeholder="Digite o valor: EX: 10,00"
+                className={styles.inputAmount}
+              />
             </div>
           ))}
-          <div className={styles.cardOptions}> </div>
+        </div>
+
+        <div className={styles.section}>
+          <h3 className={styles.sectionTitle}>Escolha o Endereço</h3>
+          {user?.cli_end?.map((endereco) => (
+            <div key={endereco.end_cep} className={styles.wrapper}>
+              <input
+                type="checkbox"
+                id={endereco.end_cep}
+                name="endereco"
+                value={endereco.end_cep}
+              />
+              <label htmlFor={endereco.end_cep}>
+                {endereco.end_logra}, {endereco.end_num}, {endereco.end_cep}
+              </label>
+            </div>
+          ))}
         </div>
 
         <div className={styles.buttonSection}>
           <button
             type="button"
+            className={styles.returnButton}
+            onClick={() => {
+              router.push("/HomePagina");
+            }}
+          >
+            Retornar as Compras
+          </button>
+
+          <button
+            type="button"
             className={styles.checkoutButton}
             onClick={() => {
+              notify();
               handleCheckout();
               router.push("/HomePagina");
             }}

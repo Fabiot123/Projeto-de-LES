@@ -11,6 +11,7 @@ export class AuthenticService {
       },
       include: {
         cli_crt: true,
+        cli_end: true,
       },
     });
     console.log(login);
