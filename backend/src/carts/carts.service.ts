@@ -10,7 +10,7 @@ export class CheckoutService {
     const createdCart = await prisma.carrinhos.create({
       data: {
         crn_cli_id: clientId,
-        crn_status: 'Em_Aberto',
+        crn_status_venda: 'Em_Processamento',
         crn_icr: {
           create: cart.map((item) => ({
             icr_qtn: item.quantity,

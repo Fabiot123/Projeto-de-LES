@@ -5,6 +5,7 @@ import { api } from "@/libs/axios";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import { NumericFormat } from "react-number-format"; // Corrigindo a importação
 
 const notify = () => {
   toast.success("Compra Realizada com Sucesso!");
@@ -14,6 +15,7 @@ export default function Checkout() {
   const { cart } = useStore();
   const router = useRouter();
   const [user, setUser] = useState();
+  const [valueWarnings, setValueWarnings] = useState({});
 
   useEffect(() => {
     const usuario = localStorage.getItem("user");
@@ -54,6 +56,21 @@ export default function Checkout() {
           .reduce((acc, item) => acc + item.lvr_prc * item.quantity, 0)
           .toFixed(2)
       : 0;
+
+  const handleValueChange = (value, cartaoNum) => {
+    if (value < 15) {
+      setValueWarnings((prev) => ({
+        ...prev,
+        [cartaoNum]: "A quantia mínima é 15,00.",
+      }));
+    } else {
+      setValueWarnings((prev) => {
+        const newWarnings = { ...prev };
+        delete newWarnings[cartaoNum];
+        return newWarnings;
+      });
+    }
+  };
 
   return (
     <div className={styles.checkoutContainer}>
@@ -99,15 +116,28 @@ export default function Checkout() {
                 name="cartaoCredito"
                 value={cartao.crt_num}
               />
-              <label htmlFor={cartao.crt_num}>
-                {cartao.crt_band} - {cartao.crt_validade}
+              <label>
+                {cartao.crt_num} - {cartao.crt_band} - {cartao.crt_validade}
               </label>
-              <input
-                type="number"
+              <NumericFormat
+                thousandSeparator="."
+                decimalSeparator=","
+                prefix="R$ "
+                fixedDecimalScale
+                decimalScale={2}
+                allowNegative={false}
                 name={`quantia_${cartao.crt_num}`}
                 placeholder="Digite o valor: EX: 10,00"
                 className={styles.inputAmount}
+                onValueChange={(values) =>
+                  handleValueChange(values.floatValue, cartao.crt_num)
+                }
               />
+              {valueWarnings[cartao.crt_num] && (
+                <p className={styles.warningText}>
+                  {valueWarnings[cartao.crt_num]}
+                </p>
+              )}
             </div>
           ))}
         </div>

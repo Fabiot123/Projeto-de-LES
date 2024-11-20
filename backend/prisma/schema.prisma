@@ -92,7 +92,8 @@ model Carrinhos {
   crn_icr ItemCarrinhos[]
   crn_cli_id String
   crn_cli Client @relation(fields: [crn_cli_id], references: [cli_id])
-  crn_status TipoStatusVendas
+  crn_status_venda TipoStatusVendas
+  crn_status_troca TipoStatusTroca
 }
 
 model ItemCarrinhos {
@@ -102,6 +103,15 @@ model ItemCarrinhos {
   icr_lvr_id String
   icr_crn Carrinhos @relation(fields: [icr_crn_id], references: [crn_id])
   icr_crn_id String
+}
+
+model Cupons {
+  cpn_id String @id @default(uuid())
+  cpn_code String
+  cpn_dt_val DateTime
+  cpn_prc Float
+  cpn_status TipoStatusCupom
+  cpn_tipo TipoCupom
 }
 
 //enums
@@ -145,16 +155,27 @@ enum TipoBandeira {
 }
 
 enum TipoStatusVendas {
-  Em_Aberto
-  Aguardando_Pagamento
+  Em_Processamento
   Pagamento_Realizado
-  Pagamento_Rejeitado
-  Finalizado
+  Pedido_Cancelado
+  Pagamento_Recusado
   Em_Transporte
   Entregue
-  Troca_Solicitada
+}
+
+enum TipoStatusTroca {
   Em_Troca
-  Troca_Recebida
-  Troca_Finalizada
-  Troca_Negada
+  Troca_Autorizada
+  Troca_Recusada
+  Troca_Realizada
+}
+
+enum TipoStatusCupom {
+  Ativado
+  Desativado
+}
+
+enum TipoCupom {
+  Troca
+  Promocional
 }
