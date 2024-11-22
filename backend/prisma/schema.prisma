@@ -22,6 +22,7 @@ model Client {
   cli_crt Cartao[]
   cli_status StatusCliente
   cli_crn Carrinhos[]
+  cli_trc Trocas []
 }
 
 model Telefone {
@@ -92,8 +93,8 @@ model Carrinhos {
   crn_icr ItemCarrinhos[]
   crn_cli_id String
   crn_cli Client @relation(fields: [crn_cli_id], references: [cli_id])
-  crn_status_venda TipoStatusVendas
-  crn_status_troca TipoStatusTroca
+  crn_status TipoStatusVendas
+  crn_cpn Cupons[]
 }
 
 model ItemCarrinhos {
@@ -103,6 +104,16 @@ model ItemCarrinhos {
   icr_lvr_id String
   icr_crn Carrinhos @relation(fields: [icr_crn_id], references: [crn_id])
   icr_crn_id String
+  icr_itc ItemTrocas []
+}
+
+model ItemTrocas {
+  itc_id String @id @default(uuid())
+  itc_qtn Int
+  itc_icr_id String
+  itc_icr ItemCarrinhos @relation(fields: [itc_icr_id], references: [icr_id])
+  itc_trc_id String
+  itc_trc Trocas @relation(fields: [itc_trc_id], references: [trc_id])
 }
 
 model Cupons {
@@ -112,6 +123,16 @@ model Cupons {
   cpn_prc Float
   cpn_status TipoStatusCupom
   cpn_tipo TipoCupom
+  cpn_crn_id String
+  cpn_crn Carrinhos @relation(fields: [cpn_crn_id], references: [crn_id])
+}
+
+model Trocas {
+  trc_id String @id @default(uuid())
+  trc_status TipoStatusTroca
+  trc_itc ItemTrocas[]
+  trc_cli_id String
+  trc_cli Client @relation(fields: [trc_cli_id], references: [cli_id])
 }
 
 //enums
@@ -164,6 +185,7 @@ enum TipoStatusVendas {
 }
 
 enum TipoStatusTroca {
+  Aberto
   Em_Troca
   Troca_Autorizada
   Troca_Recusada

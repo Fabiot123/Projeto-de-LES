@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Put } from '@nestjs/common';
 import { CarrinhosService } from './vendas.service';
 
 @Controller('livros')
@@ -10,6 +10,9 @@ export class VendasController {
   async findAll() {
     return await this.vendasService.getAllVendas();
   }
+
+  @Put()
+  async changeStatus() {}
 }
 
 module.exports = { VendasController };
