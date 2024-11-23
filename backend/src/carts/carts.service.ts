@@ -11,7 +11,6 @@ export class CheckoutService {
       data: {
         crn_cli_id: clientId,
         crn_status: 'Em_Processamento',
-        crn_status_troca: 'Aberto',
         crn_icr: {
           create: cart.map((item) => ({
             icr_qtn: item.quantity,
