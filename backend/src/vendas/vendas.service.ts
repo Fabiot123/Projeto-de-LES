@@ -4,7 +4,7 @@ import { prisma } from '../lib/prisma';
 import { TipoStatusVendas } from '@prisma/client';
 
 @Injectable()
-export class CarrinhosService {
+export class VendasService {
   async getAllVendas() {
     return await prisma.carrinhos.findMany();
   }
@@ -21,4 +21,4 @@ export class CarrinhosService {
   }
 }
 
-module.exports = { CarrinhosService };
+module.exports = { VendasService };

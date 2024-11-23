@@ -1,18 +1,24 @@
 /* eslint-disable prettier/prettier */
-import { Controller, Get, Put } from '@nestjs/common';
+import { Body, Controller, Get, Param, Put } from '@nestjs/common';
 import { TrocaService } from './troca.service';
+import { TipoStatusTroca } from '@prisma/client';
 
 @Controller('trocas')
 export class TrocarController {
-  constructor(private readonly vendasService: TrocaService) {}
+  constructor(private readonly trocaService: TrocaService) {}
 
   @Get()
   async findAll() {
-    return await this.vendasService.getAllTrocas();
+    return await this.trocaService.getAllTrocas();
   }
 
-  @Put()
-  async changeStatus() {}
+  @Put(':id')
+  async changeStatusTroca(
+    @Param('id') id: string,
+    @Body('status') status: TipoStatusTroca,
+  ) {
+    return this.trocaService.updateStatusTroca(status, id);
+  }
 }
 
 module.exports = { TrocarController };
