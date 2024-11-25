@@ -1,24 +1,59 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./VendasManagement.module.css";
 import Link from "next/link";
-import { useEffect } from "react";
 import { formatDate } from "@/libs/datefns";
 import { api } from "@/libs/axios";
+import { toast } from "react-toastify";
+
+const notifySuccess = (message) => {
+  toast.success(message);
+};
+
+const notifyError = (message) => {
+  toast.error(message);
+};
 
 export default function VendasClient() {
+  const [vendas, setVendas] = useState([]);
+
   useEffect(() => {
-    const vendasQuery = async () => {
+    const fetchVendas = async () => {
       try {
-        const { data } = await api.post("/authentic");
-        console.log(data);
+        const { data } = await api.get("/livros");
+        setVendas(data);
       } catch (e) {
+        notifyError("Erro ao buscar vendas");
         console.error("Erro", e);
       }
     };
 
-    vendasQuery();
-  });
+    fetchVendas();
+  }, []);
+
+  const handleDelete = async (id) => {
+    try {
+      await api.delete(`/livros/${id}`);
+      setVendas(vendas.filter((venda) => venda.id !== id));
+      notifySuccess("Venda deletada com sucesso");
+    } catch (e) {
+      notifyError("Erro ao deletar venda");
+      console.error("Erro", e);
+    }
+  };
+
+  const handleChangeStatus = async (id, status) => {
+    try {
+      await api.put(`/livros/${id}`, { status });
+      setVendas(
+        vendas.map((venda) => (venda.id === id ? { ...venda, status } : venda))
+      );
+      notifySuccess("Status atualizado com sucesso");
+    } catch (e) {
+      notifyError("Erro ao atualizar status");
+      console.error("Erro", e);
+    }
+  };
 
   return (
     <div className={styles.container}>
@@ -29,33 +64,33 @@ export default function VendasClient() {
             <th>Produtos</th>
             <th>Quantidade</th>
             <th>Status</th>
+            <th>Ações</th>
           </tr>
         </thead>
         <tbody>
-          {users?.map((user, index) => (
+          {vendas.map((venda, index) => (
             <tr key={index}>
-              <td>{user.cli_name}</td>
-              <td>{user.cli_cpf}</td>
-              <td>{user.cli_gen}</td>
+              <td>{venda.produto}</td>
+              <td>{venda.quantidade}</td>
+              <td>{venda.status}</td>
               <td>
-                ({user.cli_tel.tel_ddd}) {user.cli_tel.tel_num}
-              </td>
-              <td>{formatDate(user.cli_dt_nasc)}</td>
-              <td>{user.cli_email}</td>
-              <td>
+                <button
+                  className={styles.statusButton}
+                  onClick={() => handleChangeStatus(venda.id, "NovoStatus")}
+                >
+                  Atualizar Status
+                </button>
                 <Link
                   className={styles.editButton}
                   data-test="update-button"
-                  href={`/Admin/Users/${user.cli_id}`}
+                  href={`/Admin/Users/${venda.id}`}
                 >
                   Editar
                 </Link>
                 <button
                   className={styles.deleteButton}
                   data-test="delete-button"
-                  onClick={() => {
-                    handleDelete(user.cli_id);
-                  }}
+                  onClick={() => handleDelete(venda.id)}
                 >
                   Deletar
                 </button>

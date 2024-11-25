@@ -5,6 +5,7 @@ import { LivrosModule } from './products/products.module';
 import { AuthenticModule } from './authentic/authentic.module';
 import { VendasModule } from './vendas/vendas.module';
 import { CheckoutModule } from './carts/carts.module';
+import { TrocaModule } from './troca/troca.module';
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { CheckoutModule } from './carts/carts.module';
     AuthenticModule,
     VendasModule,
     CheckoutModule,
+    TrocaModule,
   ],
   controllers: [],
   providers: [],

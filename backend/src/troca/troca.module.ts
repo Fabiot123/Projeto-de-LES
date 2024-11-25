@@ -8,4 +8,4 @@ import { TrocaService } from './troca.service';
   controllers: [TrocarController],
   providers: [TrocaService],
 })
-export class CheckoutModule {}
+export class TrocaModule {}

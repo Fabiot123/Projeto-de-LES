@@ -10,7 +10,7 @@ export class TrocaService {
   }
 
   async updateStatusTroca(status: TipoStatusTroca, id: string) {
-    prisma.trocas.update({
+    return await prisma.trocas.update({
       data: {
         trc_status: status,
       },
