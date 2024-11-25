@@ -107,6 +107,14 @@ model ItemCarrinhos {
   icr_itc ItemTrocas []
 }
 
+model Trocas {
+  trc_id String @id @default(uuid())
+  trc_status TipoStatusTroca
+  trc_itc ItemTrocas[]
+  trc_cli_id String
+  trc_cli Client @relation(fields: [trc_cli_id], references: [cli_id])
+}
+
 model ItemTrocas {
   itc_id String @id @default(uuid())
   itc_qtn Int
@@ -125,14 +133,6 @@ model Cupons {
   cpn_tipo TipoCupom
   cpn_crn_id String
   cpn_crn Carrinhos @relation(fields: [cpn_crn_id], references: [crn_id])
-}
-
-model Trocas {
-  trc_id String @id @default(uuid())
-  trc_status TipoStatusTroca
-  trc_itc ItemTrocas[]
-  trc_cli_id String
-  trc_cli Client @relation(fields: [trc_cli_id], references: [cli_id])
 }
 
 //enums

@@ -6,7 +6,9 @@ import { TipoStatusTroca } from '@prisma/client';
 @Injectable()
 export class TrocaService {
   async getAllTrocas() {
-    return await prisma.trocas.findMany();
+    return await prisma.trocas.findMany({
+      include: {},
+    });
   }
 
   async updateStatusTroca(status: TipoStatusTroca, id: string) {
