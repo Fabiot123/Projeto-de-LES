@@ -6,6 +6,7 @@ import { AuthenticModule } from './authentic/authentic.module';
 import { VendasModule } from './vendas/vendas.module';
 import { CheckoutModule } from './carts/carts.module';
 import { TrocaModule } from './troca/troca.module';
+import { CupomModule } from './cupom/cupom.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { TrocaModule } from './troca/troca.module';
     VendasModule,
     CheckoutModule,
     TrocaModule,
+    CupomModule,
   ],
   controllers: [],
   providers: [],

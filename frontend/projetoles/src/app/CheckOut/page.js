@@ -123,6 +123,9 @@ export default function Checkout() {
         <div className={styles.subtotal}>
           <p>Subtotal</p>
           <p>R${subtotal.toFixed(2)}</p>
+          {desconto > 0 && (
+            <p className={styles.discount}>- R${desconto.toFixed(2)}</p>
+          )}
         </div>
         <div className={styles.section}>
           <h3 className={styles.sectionTitle}>Adicionar Cupom</h3>

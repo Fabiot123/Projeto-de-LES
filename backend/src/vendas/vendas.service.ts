@@ -34,6 +34,26 @@ export class VendasService {
     });
   }
 
+  async getByID(id: string) {
+    return await prisma.carrinhos.findFirst({
+      where: {
+        crn_cli_id: id,
+      },
+      include: {
+        crn_icr: {
+          include: {
+            icr_lvr: {
+              select: {
+                lvr_id: true,
+                lvr_ttl: true,
+              },
+            },
+          },
+        },
+      },
+    });
+  }
+
   async updateStatusCompra(status: TipoStatusVendas, id: string) {
     return await prisma.carrinhos.update({
       data: {

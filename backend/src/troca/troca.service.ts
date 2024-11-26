@@ -7,7 +7,28 @@ import { TipoStatusTroca } from '@prisma/client';
 export class TrocaService {
   async getAllTrocas() {
     return await prisma.trocas.findMany({
-      include: {},
+      include: {
+        trc_cli: {
+          select: {
+            cli_id: true,
+            cli_name: true,
+          },
+        },
+        trc_itc: {
+          include: {
+            itc_icr: {
+              include: {
+                icr_lvr: {
+                  select: {
+                    lvr_id: true,
+                    lvr_ttl: true,
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
     });
   }
 
