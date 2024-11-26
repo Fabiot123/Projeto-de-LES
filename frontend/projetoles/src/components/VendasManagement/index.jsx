@@ -2,56 +2,30 @@
 import React, { useEffect, useState } from "react";
 import styles from "./VendasManagement.module.css";
 import Link from "next/link";
-import { formatDate } from "@/libs/datefns";
-import { api } from "@/libs/axios";
+import { vendaService } from "@/services/entities/vendaService";
+import { useVendaQuery } from "@/services/query/vendaQuery";
 import { toast } from "react-toastify";
 
-const notifySuccess = (message) => {
-  toast.success(message);
-};
+export default function VendasManagement() {
+  const { data: vendas, refetch } = useVendaQuery();
 
-const notifyError = (message) => {
-  toast.error(message);
-};
+  const TipoStatusVendas = [
+    "Em_Processamento",
+    "Pagamento_Realizado",
+    "Pedido_Cancelado",
+    "Pagamento_Recusado",
+    "Em_Transporte",
+    "Entregue",
+  ];
 
-export default function VendasClient() {
-  const [vendas, setVendas] = useState([]);
-
-  useEffect(() => {
-    const fetchVendas = async () => {
-      try {
-        const { data } = await api.get("/livros");
-        setVendas(data);
-      } catch (e) {
-        notifyError("Erro ao buscar vendas");
-        console.error("Erro", e);
-      }
-    };
-
-    fetchVendas();
-  }, []);
-
-  const handleDelete = async (id) => {
+  const handleChangeStatus = async (id, newStatus) => {
     try {
-      await api.delete(`/livros/${id}`);
-      setVendas(vendas.filter((venda) => venda.id !== id));
-      notifySuccess("Venda deletada com sucesso");
-    } catch (e) {
-      notifyError("Erro ao deletar venda");
-      console.error("Erro", e);
-    }
-  };
-
-  const handleChangeStatus = async (id, status) => {
-    try {
-      await api.put(`/livros/${id}`, { status });
-      setVendas(
-        vendas.map((venda) => (venda.id === id ? { ...venda, status } : venda))
-      );
-      notifySuccess("Status atualizado com sucesso");
-    } catch (e) {
-      notifyError("Erro ao atualizar status");
-      console.error("Erro", e);
+      await vendaService.update(id, { status: newStatus }); // Chama o serviço para atualizar
+      toast.success("Status atualizado com sucesso!");
+      refetch(); // Atualiza os dados na interface
+    } catch (error) {
+      console.error(error);
+      toast.error("Erro ao atualizar o status.");
     }
   };
 
@@ -61,39 +35,46 @@ export default function VendasClient() {
       <table className={styles.table}>
         <thead>
           <tr>
-            <th>Produtos</th>
-            <th>Quantidade</th>
+            <th>Nome do Cliente</th>
+            <th>Produtos - Quantidade</th>
+            <th>Cupons</th>
             <th>Status</th>
-            <th>Ações</th>
           </tr>
         </thead>
         <tbody>
-          {vendas.map((venda, index) => (
+          {vendas?.map((venda, index) => (
             <tr key={index}>
-              <td>{venda.produto}</td>
-              <td>{venda.quantidade}</td>
-              <td>{venda.status}</td>
+              <td>{venda.crn_cli.cli_name}</td>
               <td>
-                <button
-                  className={styles.statusButton}
-                  onClick={() => handleChangeStatus(venda.id, "NovoStatus")}
+                {venda.crn_icr.map((item) => (
+                  <div key={item.icr_lvr.lvr_ttl}>
+                    {item.icr_lvr.lvr_ttl} - {item.icr_qtn} unidade(s)
+                  </div>
+                ))}
+              </td>
+              <td>
+                {venda.crn_cpn.length > 0 ? (
+                  venda.crn_cpn.map((cupom) => (
+                    <div key={cupom.cpn_id}>{cupom.cpn_code}</div>
+                  ))
+                ) : (
+                  <span>Sem cupom</span>
+                )}
+              </td>
+              <td>
+                <select
+                  className={styles.statusSelect}
+                  value={venda.crn_status} // Status atual
+                  onChange={(e) =>
+                    handleChangeStatus(venda.crn_id, e.target.value)
+                  } // Atualiza o status
                 >
-                  Atualizar Status
-                </button>
-                <Link
-                  className={styles.editButton}
-                  data-test="update-button"
-                  href={`/Admin/Users/${venda.id}`}
-                >
-                  Editar
-                </Link>
-                <button
-                  className={styles.deleteButton}
-                  data-test="delete-button"
-                  onClick={() => handleDelete(venda.id)}
-                >
-                  Deletar
-                </button>
+                  {TipoStatusVendas.map((status) => (
+                    <option key={status} value={status}>
+                      {status.replace(/_/g, " ")} {/* Formata para leitura */}
+                    </option>
+                  ))}
+                </select>
               </td>
             </tr>
           ))}

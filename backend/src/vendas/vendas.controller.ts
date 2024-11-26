@@ -3,7 +3,7 @@ import { Body, Controller, Get, Param, Put } from '@nestjs/common';
 import { VendasService } from './vendas.service';
 import { TipoStatusVendas } from '@prisma/client';
 
-@Controller('livros')
+@Controller('vendas')
 export class VendasController {
   constructor(private readonly vendasService: VendasService) {}
 

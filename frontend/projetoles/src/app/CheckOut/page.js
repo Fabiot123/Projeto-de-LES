@@ -5,7 +5,7 @@ import { api } from "@/libs/axios";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
-import { NumericFormat } from "react-number-format"; // Corrigindo a importação
+import { NumericFormat } from "react-number-format";
 
 const notify = () => {
   toast.success("Compra Realizada com Sucesso!");
@@ -15,15 +15,46 @@ export default function Checkout() {
   const { cart } = useStore();
   const router = useRouter();
   const [user, setUser] = useState();
+  const [cupomCode, setCupomCode] = useState("");
+  const [desconto, setDesconto] = useState(0);
   const [valueWarnings, setValueWarnings] = useState({});
 
   useEffect(() => {
     const usuario = localStorage.getItem("user");
-
     const usuarioParse = JSON.parse(usuario);
-
     setUser(usuarioParse);
   }, []);
+
+  const handleApplyCupom = async () => {
+    if (!cupomCode.trim()) {
+      toast.error("Digite um código de cupom válido!");
+      return;
+    }
+
+    try {
+      const response = await api.post("/cupons", { code: cupomCode });
+      console.log("Response da API:", response.data);
+
+      if (response.data.isValid) {
+        toast.success("Cupom aplicado com sucesso!");
+        setDesconto(response.data.desconto);
+      } else {
+        toast.error(response.data.message || "Cupom inválido ou expirado.");
+      }
+    } catch (error) {
+      console.error(
+        "Erro ao validar o cupom:",
+        error.response?.data || error.message
+      );
+      toast.error("Erro ao validar o cupom.");
+    }
+  };
+
+  const subtotal =
+    cart.length > 0
+      ? cart.reduce((acc, item) => acc + item.lvr_prc * item.quantity, 0) -
+        desconto
+      : 0;
 
   const handleCheckout = async () => {
     console.log("Finalizando a compra");
@@ -32,8 +63,9 @@ export default function Checkout() {
 
     const checkoutData = {
       cart: cart,
-      subtotal: parseFloat(subtotal),
+      subtotal: parseFloat(subtotal.toFixed(2)),
       clientId: user.cli_id,
+      cupom: cupomCode,
     };
 
     try {
@@ -45,18 +77,16 @@ export default function Checkout() {
 
       const data = await response.json();
       console.log("Compra finalizada com sucesso:", data);
+
+      notify();
+      router.push("/HomePagina");
     } catch (error) {
       console.error("Erro:", error);
+      toast.error("Erro ao finalizar a compra.");
     }
   };
 
-  const subtotal =
-    cart.length > 0
-      ? cart
-          .reduce((acc, item) => acc + item.lvr_prc * item.quantity, 0)
-          .toFixed(2)
-      : 0;
-
+  // Validar valor mínimo no cartão de crédito
   const handleValueChange = (value, cartaoNum) => {
     if (value < 15) {
       setValueWarnings((prev) => ({
@@ -92,16 +122,22 @@ export default function Checkout() {
         </div>
         <div className={styles.subtotal}>
           <p>Subtotal</p>
-          <p>R${subtotal}</p>
+          <p>R${subtotal.toFixed(2)}</p>
         </div>
         <div className={styles.section}>
           <h3 className={styles.sectionTitle}>Adicionar Cupom</h3>
           <input
             type="text"
             placeholder="Digite o código do cupom"
+            value={cupomCode}
+            onChange={(e) => setCupomCode(e.target.value)}
             className={styles.input}
           />
-          <button type="button" className={styles.couponButton}>
+          <button
+            type="button"
+            className={styles.couponButton}
+            onClick={handleApplyCupom}
+          >
             Aplicar
           </button>
         </div>
@@ -127,7 +163,7 @@ export default function Checkout() {
                 decimalScale={2}
                 allowNegative={false}
                 name={`quantia_${cartao.crt_num}`}
-                placeholder="Digite o valor: EX: 10,00"
+                placeholder="Digite o valor: EX: 15,00"
                 className={styles.inputAmount}
                 onValueChange={(values) =>
                   handleValueChange(values.floatValue, cartao.crt_num)

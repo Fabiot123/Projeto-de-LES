@@ -126,13 +126,13 @@ model ItemTrocas {
 
 model Cupons {
   cpn_id String @id @default(uuid())
-  cpn_code String
-  cpn_dt_val DateTime
+  cpn_code String @unique
+  cpn_dt_val DateTime?
   cpn_prc Float
   cpn_status TipoStatusCupom
   cpn_tipo TipoCupom
-  cpn_crn_id String
-  cpn_crn Carrinhos @relation(fields: [cpn_crn_id], references: [crn_id])
+  cpn_crn_id String?
+  cpn_crn Carrinhos? @relation(fields: [cpn_crn_id], references: [crn_id])
 }
 
 //enums
