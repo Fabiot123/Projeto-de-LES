@@ -1,7 +1,6 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styles from "./VendasManagement.module.css";
-import Link from "next/link";
 import { vendaService } from "@/services/entities/vendaService";
 import { useVendaQuery } from "@/services/query/vendaQuery";
 import { toast } from "react-toastify";
@@ -37,7 +36,6 @@ export default function VendasManagement() {
           <tr>
             <th>Nome do Cliente</th>
             <th>Produtos - Quantidade</th>
-            <th>Cupons</th>
             <th>Status</th>
           </tr>
         </thead>
@@ -53,25 +51,16 @@ export default function VendasManagement() {
                 ))}
               </td>
               <td>
-                {venda.crn_cpn.length > 0 ? (
-                  venda.crn_cpn.map((cupom) => (
-                    <div key={cupom.cpn_id}>{cupom.cpn_code}</div>
-                  ))
-                ) : (
-                  <span>Sem cupom</span>
-                )}
-              </td>
-              <td>
                 <select
                   className={styles.statusSelect}
-                  value={venda.crn_status} // Status atual
+                  value={venda.crn_status}
                   onChange={(e) =>
                     handleChangeStatus(venda.crn_id, e.target.value)
-                  } // Atualiza o status
+                  }
                 >
                   {TipoStatusVendas.map((status) => (
                     <option key={status} value={status}>
-                      {status.replace(/_/g, " ")} {/* Formata para leitura */}
+                      {status.replace(/_/g, " ")}
                     </option>
                   ))}
                 </select>

@@ -65,19 +65,21 @@ export default function Checkout() {
       cart: cart,
       subtotal: parseFloat(subtotal.toFixed(2)),
       clientId: user.cli_id,
-      cupom: cupomCode,
     };
 
     try {
       const response = await api.post("/checkout", checkoutData);
 
-      if (!response.ok) {
+      if (response.status !== 201) {
         throw new Error("Erro ao finalizar compra");
       }
 
-      const data = await response.json();
+      const data = response.data;
       console.log("Compra finalizada com sucesso:", data);
 
+      console.log("Resposta da API:", response.data);
+
+      console.log("Compra finalizada com sucesso:", response.data);
       notify();
       router.push("/HomePagina");
     } catch (error) {
@@ -86,7 +88,6 @@ export default function Checkout() {
     }
   };
 
-  // Validar valor mínimo no cartão de crédito
   const handleValueChange = (value, cartaoNum) => {
     if (value < 15) {
       setValueWarnings((prev) => ({
@@ -213,7 +214,6 @@ export default function Checkout() {
             type="button"
             className={styles.checkoutButton}
             onClick={() => {
-              notify();
               handleCheckout();
               router.push("/HomePagina");
             }}

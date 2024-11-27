@@ -8,3 +8,14 @@ export const useVendaQuery = () => {
 
   return query;
 };
+export const useVendaByIdQuery = (id) => {
+  const query = useQuery({
+    queryKey: ["vendaId", id],
+    queryFn: async () => vendaService.getById(id),
+    enabled: !!id,
+    staleTime: 0,
+    gcTime: 0,
+  });
+
+  return query;
+};
