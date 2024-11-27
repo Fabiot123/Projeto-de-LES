@@ -24,12 +24,6 @@ export class VendasService {
             cli_name: true,
           },
         },
-        crn_cpn: {
-          select: {
-            cpn_id: true,
-            cpn_code: true,
-          },
-        },
       },
     });
   }

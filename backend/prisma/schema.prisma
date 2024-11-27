@@ -94,7 +94,6 @@ model Carrinhos {
   crn_cli_id String
   crn_cli Client @relation(fields: [crn_cli_id], references: [cli_id])
   crn_status TipoStatusVendas
-  crn_cpn Cupons[]
 }
 
 model ItemCarrinhos {
@@ -113,6 +112,7 @@ model Trocas {
   trc_itc ItemTrocas[]
   trc_cli_id String
   trc_cli Client @relation(fields: [trc_cli_id], references: [cli_id])
+  trc_cpn Cupons?
 }
 
 model ItemTrocas {
@@ -127,12 +127,11 @@ model ItemTrocas {
 model Cupons {
   cpn_id String @id @default(uuid())
   cpn_code String @unique
-  cpn_dt_val DateTime?
   cpn_prc Float
   cpn_status TipoStatusCupom
   cpn_tipo TipoCupom
-  cpn_crn_id String?
-  cpn_crn Carrinhos? @relation(fields: [cpn_crn_id], references: [crn_id])
+  cpn_trc_id String? @unique
+  cpn_trc Trocas? @relation(fields: [cpn_trc_id], references: [trc_id])
 }
 
 //enums

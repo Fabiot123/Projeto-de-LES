@@ -6,8 +6,13 @@ import { CuponsService } from './cupom.service';
 export class CuponsController {
   constructor(private readonly cuponsService: CuponsService) {}
 
-  @Post()
+  @Post('validar')
   async validarCupom(@Body() { code }: { code: string }) {
     return this.cuponsService.validarCupom(code);
+  }
+
+  @Post()
+  async createCupom(@Body() cupomData: any) {
+    return this.cuponsService.createCupom(cupomData);
   }
 }

@@ -65,6 +65,9 @@ const Home = () => {
           <h1 className={styles.title}>Livraria Aurora</h1>
         </div>
         <nav className={styles.nav}>
+          <Link href="/Troca">
+            <button className={styles.styledButton}>Minha Trocas</button>
+          </Link>
           <Link href="/MinhaCompras">
             <button className={styles.styledButton}>Minha Compras</button>
           </Link>
