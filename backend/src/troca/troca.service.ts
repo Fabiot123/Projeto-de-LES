@@ -50,6 +50,7 @@ export class TrocaService {
             },
           },
         },
+        trc_cpn: true,
       },
     });
   }

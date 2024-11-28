@@ -32,7 +32,7 @@ export default function Checkout() {
     }
 
     try {
-      const response = await api.post("/cupons", { code: cupomCode });
+      const response = await api.post("/cupons/validar", { code: cupomCode });
       console.log("Response da API:", response.data);
 
       if (response.data.isValid) {

@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import styles from "./Troca.module.css";
+import Link from "next/link";
 import { useTrocaQuery } from "@/services/query/trocaQuery";
 
 export default function TrocasManagement() {
@@ -12,6 +13,7 @@ export default function TrocasManagement() {
     const cliId = user?.cli_id;
 
     if (trocas && cliId) {
+      // Filtra as trocas do cliente atual
       const trocasDoCliente = trocas.filter(
         (troca) => troca.trc_cli_id === cliId
       );
@@ -43,9 +45,15 @@ export default function TrocasManagement() {
               <td>{troca.trc_status.replace(/_/g, " ")}</td>
               <td>
                 {troca.trc_status === "Troca_Realizada" ? (
-                  <span className={styles.couponCode}>
-                    {troca.trc_cpn ? troca.trc_cpn.cpn_code : "Não disponível"}
-                  </span>
+                  troca.trc_cpn ? (
+                    <span className={styles.couponCode}>
+                      {troca.trc_cpn.cpn_code}
+                    </span>
+                  ) : (
+                    <span className={styles.notAvailable}>
+                      Ainda não gerado
+                    </span>
+                  )
                 ) : (
                   <span className={styles.notAvailable}>Ainda não gerado</span>
                 )}
@@ -53,6 +61,9 @@ export default function TrocasManagement() {
             </tr>
           ))}
         </tbody>
+        <Link href="/HomePagina">
+          <button className={styles.styledButton}>Voltar às Compras</button>
+        </Link>
       </table>
     </div>
   );
