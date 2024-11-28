@@ -80,6 +80,7 @@ model Livros {
   lvr_cod_brr String @unique
   lvr_cat Categorias[]
   lvr_icr ItemCarrinhos[]
+  lvr_qnt Int
 }
 
 model Categorias {

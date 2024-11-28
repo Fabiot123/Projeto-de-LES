@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "../../app/CadastroCliente/CadastroCliente.module.css";
-// import styles from "./FormClient.module.css"
 import DefaultInput from "@/components/DefaultInput";
 import DefaultSelect from "@/components/DefaultSelect";
 import RadioButtonGroup from "@/components/RadioButtonGroup";
