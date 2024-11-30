@@ -83,6 +83,7 @@ export default function TrocasManagement() {
               </td>
               <td>
                 <select
+                  data-test="status-troca"
                   className={styles.statusSelect}
                   value={troca.trc_status}
                   onChange={(e) =>
@@ -105,6 +106,7 @@ export default function TrocasManagement() {
                   </div>
                 ) : (
                   <button
+                    data-test="cupom"
                     className={styles.generateButton}
                     onClick={() => handleGenerateCoupon(troca.trc_id)}
                   >

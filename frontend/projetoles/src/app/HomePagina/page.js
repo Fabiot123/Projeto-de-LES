@@ -66,16 +66,24 @@ const Home = () => {
         </div>
         <nav className={styles.nav}>
           <Link href="/Troca">
-            <button className={styles.styledButton}>Minha Trocas</button>
+            <button data-test="troca" className={styles.styledButton}>
+              Minha Trocas
+            </button>
           </Link>
           <Link href="/MinhaCompras">
-            <button className={styles.styledButton}>Minha Compras</button>
+            <button data-test="compras" className={styles.styledButton}>
+              Minha Compras
+            </button>
           </Link>
           <Link href="/LoginPage">
-            <button className={styles.styledButton}>Login</button>
+            <button data-test="login" className={styles.styledButton}>
+              Login
+            </button>
           </Link>
           <Link href="/Cart">
-            <button className={styles.styledButton}>Carrinho</button>
+            <button data-test="carrinho" className={styles.styledButton}>
+              Carrinho
+            </button>
           </Link>
         </nav>
       </div>
@@ -90,6 +98,7 @@ const Home = () => {
               <div className={styles.buttonGroup}>
                 <button
                   className={styles.button}
+                  data-test="remove-item"
                   onClick={() => decreaseQuantity(book.lvr_id)}
                 >
                   -
@@ -97,12 +106,14 @@ const Home = () => {
                 <span>{b_count[book.lvr_id] || 0}</span>
                 <button
                   className={styles.button}
+                  data-test="add-item"
                   onClick={() => increaseQuantity(book.lvr_id)}
                 >
                   +
                 </button>
                 <button
                   className={styles.button}
+                  data-test="add-carrinho"
                   onClick={() => addToCart(book, b_count[book.lvr_id])}
                 >
                   Adicionar ao Carrinho

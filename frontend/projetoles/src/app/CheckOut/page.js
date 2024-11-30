@@ -131,6 +131,7 @@ export default function Checkout() {
         <div className={styles.section}>
           <h3 className={styles.sectionTitle}>Adicionar Cupom</h3>
           <input
+            data-test="cupom-code"
             type="text"
             placeholder="Digite o código do cupom"
             value={cupomCode}
@@ -138,6 +139,7 @@ export default function Checkout() {
             className={styles.input}
           />
           <button
+            data-test="aplicar-cupom"
             type="button"
             className={styles.couponButton}
             onClick={handleApplyCupom}
@@ -160,6 +162,7 @@ export default function Checkout() {
                 {cartao.crt_num} - {cartao.crt_band} - {cartao.crt_validade}
               </label>
               <NumericFormat
+                data-test="preco"
                 thousandSeparator="."
                 decimalSeparator=","
                 prefix="R$ "
@@ -180,13 +183,6 @@ export default function Checkout() {
               )}
             </div>
           ))}
-          <button
-            onClick={() => {
-              router.push("/Cartao");
-            }}
-          >
-            Adicionar Cartão
-          </button>
         </div>
 
         <div className={styles.section}>
@@ -194,6 +190,7 @@ export default function Checkout() {
           {user?.cli_end?.map((endereco) => (
             <div key={endereco.end_cep} className={styles.wrapper}>
               <input
+                data-test="endereco"
                 type="checkbox"
                 id={endereco.end_cep}
                 name="endereco"
@@ -218,6 +215,7 @@ export default function Checkout() {
           </button>
 
           <button
+            data-test="finalizar"
             type="button"
             className={styles.checkoutButton}
             onClick={() => {

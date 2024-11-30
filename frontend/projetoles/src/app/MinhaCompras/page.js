@@ -132,6 +132,7 @@ export default function VendasManagement() {
                   venda.crn_icr.map((item) => (
                     <div key={item.icr_lvr.lvr_id}>
                       <input
+                        data-test="item"
                         type="checkbox"
                         onChange={() =>
                           handleSelect(venda.crn_id, item.icr_lvr.lvr_id)
@@ -150,6 +151,7 @@ export default function VendasManagement() {
                   venda.crn_icr.map((item) => (
                     <div key={item.icr_id}>
                       <input
+                        data-test="quant-preco"
                         type="number"
                         min="0"
                         max={item.icr_qtn}
@@ -178,13 +180,18 @@ export default function VendasManagement() {
         </tbody>
       </table>
       {hasEligibleVendas && isReembolsoEnabled && (
-        <button className={styles.styledButton} onClick={handleSubmitReembolso}>
+        <button
+          data-test="reembolso"
+          className={styles.styledButton}
+          onClick={handleSubmitReembolso}
+        >
           Confirmar Reembolso
         </button>
       )}
       <Link href="/HomePagina">
         <button className={styles.styledButton}>Voltar às Compras</button>
       </Link>
+      <p>As compras mais abaixo são as mais recentes!</p>
     </div>
   );
 }

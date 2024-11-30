@@ -52,6 +52,7 @@ export default function VendasManagement() {
               </td>
               <td>
                 <select
+                  data-test="status"
                   className={styles.statusSelect}
                   value={venda.crn_status}
                   onChange={(e) =>

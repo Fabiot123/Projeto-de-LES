@@ -29,7 +29,9 @@ export default function FormLogin() {
       <form className={styles.loginform} onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor={"email"}>Email</label>
         <input type="email" {...register("email")} id="email" required />
-        <button type="submit">Login</button>
+        <button data-test="login" type="submit">
+          Login
+        </button>
         <Link href={"/HomePagina"}>
           <p className={styles.shopping}>Voltar pra Pagina Inicial</p>
         </Link>

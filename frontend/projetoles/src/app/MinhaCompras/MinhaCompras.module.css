@@ -15,6 +15,10 @@
   text-align: left;
 }
 
+.text p {
+  font-family: "Roboto", sans-serif;
+}
+
 .table {
   width: 100%;
   border-collapse: collapse;

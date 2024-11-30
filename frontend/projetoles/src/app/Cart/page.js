@@ -59,11 +59,22 @@ const Cart = () => {
               </div>
             </div>
             <div className={styles.itemActions}>
-              <button onClick={() => decreaseQuantity(item)}>-</button>
+              <button
+                data-test="add-item"
+                onClick={() => decreaseQuantity(item)}
+              >
+                -
+              </button>
               <span>{item.quantity}</span>
-              <button onClick={() => increaseQuantity(item)}>+</button>
+              <button
+                data-test="remove-item"
+                onClick={() => increaseQuantity(item)}
+              >
+                +
+              </button>
               <p>R${(item.lvr_prc * item.quantity).toFixed(2)}</p>
               <button
+                data-test="remove-all"
                 onClick={() => removeItem(item.lvr_id)}
                 className={styles.removeButton}
               >
@@ -78,7 +89,9 @@ const Cart = () => {
         <p>R${subtotal}</p>
       </div>
       <Link href="http://localhost:3000/CheckOut">
-        <button className={styles.checkoutButton}>Checkout</button>
+        <button data-test="cart" className={styles.checkoutButton}>
+          Checkout
+        </button>
       </Link>
       <Link href="http://localhost:3000/HomePagina">
         <p className={styles.continueShopping}>Ou Continuar Comprando →</p>
