@@ -8,7 +8,7 @@ import { api } from "@/libs/axios";
 export default function VendasManagement() {
   const { data: vendas } = useVendaQuery();
   const [filteredVendas, setFilteredVendas] = useState([]);
-  const [reembolso, setReembolso] = useState({}); // Estado para controlar os reembolsos
+  const [reembolso, setReembolso] = useState({});
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -27,7 +27,7 @@ export default function VendasManagement() {
       ...prev,
       [vendaId]: {
         ...prev[vendaId],
-        [itemId]: prev[vendaId]?.[itemId] || 0, // Adiciona o item com 0 caso ainda não esteja selecionado
+        [itemId]: prev[vendaId]?.[itemId] || 0,
       },
     }));
   };

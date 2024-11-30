@@ -180,6 +180,13 @@ export default function Checkout() {
               )}
             </div>
           ))}
+          <button
+            onClick={() => {
+              router.push("/Cartao");
+            }}
+          >
+            Adicionar Cartão
+          </button>
         </div>
 
         <div className={styles.section}>

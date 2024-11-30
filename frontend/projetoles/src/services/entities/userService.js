@@ -19,6 +19,7 @@ export const userService = {
     const { data } = await api.put(`/clients/${id}`, values);
     return data;
   },
+
   async delete(id) {
     await api.delete(`/clients/${id}`);
   },

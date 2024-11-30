@@ -169,7 +169,7 @@ enum TipoResidencia {
 enum TipoBandeira {
   Visa
   MasterCard
-  AmeircanExpress
+  AmericanExpress
   Elo
   Hipercard
   Alelo
