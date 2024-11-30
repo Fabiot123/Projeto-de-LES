@@ -140,6 +140,7 @@ enum TipoCartao {
   Credito
   Debito
 }
+
 enum Genero {
   Masculino
   Feminino

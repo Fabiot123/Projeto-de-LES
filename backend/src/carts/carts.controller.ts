@@ -21,14 +21,4 @@ export class CheckoutController {
       throw new HttpException(e.message, HttpStatus.NOT_FOUND);
     }
   }
-
-  @Post('cartoes')
-  async createCard(@Body() body: any) {
-    try {
-      const card = await this.checkoutService.createOtherCard(body);
-      return { card };
-    } catch (e) {
-      throw new HttpException(e.message, HttpStatus.NOT_FOUND);
-    }
-  }
 }
