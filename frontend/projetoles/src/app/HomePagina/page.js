@@ -6,6 +6,7 @@ import styles from "./HomePagina.module.css";
 import Image from "next/image";
 import Link from "next/link";
 import { api } from "@/libs/axios";
+import ChatWidget from "@/components/Chatbot";
 
 const Home = () => {
   const [books, setBooks] = useState([]);
@@ -123,6 +124,7 @@ const Home = () => {
           ))}
         </div>
       </section>
+      <ChatWidget />
     </div>
   );
 };

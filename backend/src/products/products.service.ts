@@ -5,7 +5,11 @@ import { prisma } from '../lib/prisma';
 @Injectable()
 export class LivrosService {
   async getAllLivros() {
-    return await prisma.livros.findMany();
+    return await prisma.livros.findMany({
+      include: {
+        lvr_cat: true,
+      },
+    });
   }
 }
 

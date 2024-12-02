@@ -7,6 +7,8 @@ import { VendasModule } from './vendas/vendas.module';
 import { CheckoutModule } from './carts/carts.module';
 import { TrocaModule } from './troca/troca.module';
 import { CupomModule } from './cupom/cupom.module';
+import { ChatbotModule } from './chatbot/chatbot.module';
+import { DashboardModule } from './dashboard/dashboard.module';
 
 @Module({
   imports: [
@@ -17,6 +19,8 @@ import { CupomModule } from './cupom/cupom.module';
     CheckoutModule,
     TrocaModule,
     CupomModule,
+    ChatbotModule,
+    DashboardModule,
   ],
   controllers: [],
   providers: [],
