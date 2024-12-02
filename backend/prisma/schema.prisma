@@ -75,7 +75,7 @@ model Livros {
   lvr_lar Float
   lvr_pes Float
   lvr_prf Float
-  lvr_stt Boolean
+  lvr_stt StatusLivro
   lvr_prc Float
   lvr_cod_brr String @unique
   lvr_cat Categorias[]
@@ -136,6 +136,11 @@ model Cupons {
 }
 
 //enums
+enum StatusLivro {
+  Ativado
+  Desativado
+}
+
 enum TipoCartao {
   Credito
   Debito

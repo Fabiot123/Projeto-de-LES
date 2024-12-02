@@ -9,6 +9,7 @@ import { TrocaModule } from './troca/troca.module';
 import { CupomModule } from './cupom/cupom.module';
 import { ChatbotModule } from './chatbot/chatbot.module';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { BooksModule } from './books/books.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
     CupomModule,
     ChatbotModule,
     DashboardModule,
+    BooksModule,
   ],
   controllers: [],
   providers: [],
