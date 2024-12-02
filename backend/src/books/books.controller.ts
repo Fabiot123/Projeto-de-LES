@@ -59,8 +59,7 @@ export class BooksController {
     }
   }
 
-  @Put(':id')
-  async update(
+  @Put(':id') async update(
     @Param('id') id: string,
     @Body() data: Prisma.LivrosUpdateInput,
   ) {

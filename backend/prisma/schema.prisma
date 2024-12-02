@@ -137,8 +137,8 @@ model Cupons {
 
 //enums
 enum StatusLivro {
-  Ativado
-  Desativado
+  ATIVADO
+  DESATIVADO
 }
 
 enum TipoCartao {

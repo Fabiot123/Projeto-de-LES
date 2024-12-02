@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
-import { toast } from "react-toastify";
 import { api } from "@/libs/axios";
-import styles from "./BookForm.module.css";
+import styles from "./BookEditForm.module.css";
 
-const BookForm = ({ onBookAdded }) => {
+const BookEditForm = ({ bookId, onBookUpdated, onCancel }) => {
   const [formData, setFormData] = useState({
     lvr_atr: "",
     lvr_ttl: "",
@@ -26,6 +25,15 @@ const BookForm = ({ onBookAdded }) => {
   const [error, setError] = useState("");
 
   useEffect(() => {
+    const fetchBook = async () => {
+      try {
+        const response = await api.get(`/books/${bookId}`);
+        setFormData(response.data);
+      } catch (error) {
+        console.error("Erro ao buscar livro:", error);
+      }
+    };
+
     const fetchCategorias = async () => {
       try {
         const response = await api.get("/books/categorias");
@@ -35,8 +43,9 @@ const BookForm = ({ onBookAdded }) => {
       }
     };
 
+    fetchBook();
     fetchCategorias();
-  }, []);
+  }, [bookId]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -48,12 +57,8 @@ const BookForm = ({ onBookAdded }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
-
-    console.log("Dados do formulário:", formData);
-
     try {
-      const livroData = {
+      const updatedData = {
         ...formData,
         lvr_ano: parseInt(formData.lvr_ano, 10),
         lvr_num_pag: parseInt(formData.lvr_num_pag, 10),
@@ -65,32 +70,10 @@ const BookForm = ({ onBookAdded }) => {
         lvr_qnt: parseInt(formData.lvr_qnt, 10),
         lvr_cat: { connect: { cat_id: formData.lvr_cat } },
       };
-      console.log("Dados enviados:", livroData);
-      await api.post("/books", livroData);
-      onBookAdded();
-      toast.success("Livro adicionado com sucesso!");
-      setFormData({
-        lvr_atr: "",
-        lvr_ttl: "",
-        lvr_ISBN: "",
-        lvr_ano: "",
-        lvr_num_pag: "",
-        lvr_snp: "",
-        lvr_alt: "",
-        lvr_lar: "",
-        lvr_pes: "",
-        lvr_prf: "",
-        lvr_stt: "ATIVADO",
-        lvr_prc: "",
-        lvr_cod_brr: "",
-        lvr_qnt: "",
-        lvr_cat: "",
-      });
+      await api.put(`/books/${bookId}`, updatedData);
+      onBookUpdated();
     } catch (error) {
-      console.error("Erro ao adicionar livro:", error);
-      setError(
-        "Erro ao adicionar livro. Verifique os dados e tente novamente."
-      );
+      console.error("Erro ao atualizar livro:", error);
     }
   };
 
@@ -239,9 +222,12 @@ const BookForm = ({ onBookAdded }) => {
         ))}
       </select>
 
-      <button type="submit">Adicionar Livro</button>
+      <button type="submit">Atualizar Livro</button>
+      <button type="button" onClick={onCancel}>
+        Cancelar
+      </button>
     </form>
   );
 };
 
-export default BookForm;
+export default BookEditForm;

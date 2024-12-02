@@ -66,15 +66,16 @@ export class BooksService {
       const livroExistente = await prisma.livros.findUnique({
         where: { lvr_id: id },
       });
-
       if (!livroExistente) {
         throw new NotFoundException('Livro não encontrado');
       }
-
-      return prisma.livros.update({
+      console.log('Atualizando livro com os seguintes dados:', data);
+      const updatedBook = await prisma.livros.update({
         where: { lvr_id: id },
         data,
       });
+      console.log('Livro atualizado com sucesso:', updatedBook);
+      return updatedBook;
     } catch (error) {
       console.error(`Erro ao atualizar livro com id ${id}:`, error);
       throw new InternalServerErrorException('Erro ao atualizar livro');
