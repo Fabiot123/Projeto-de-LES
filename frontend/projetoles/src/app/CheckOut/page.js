@@ -1,4 +1,5 @@
 "use client";
+
 import styles from "./Checkout.module.css";
 import useStore from "@/useStore";
 import { api } from "@/libs/axios";
@@ -6,6 +7,8 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { NumericFormat } from "react-number-format";
+import CardForm from "@/components/FormCartao";
+import Link from "next/link";
 
 const notify = () => {
   toast.success("Compra Realizada com Sucesso!");
@@ -183,6 +186,15 @@ export default function Checkout() {
               )}
             </div>
           ))}
+          <button
+            data-test="adicionar-cartao"
+            type="button"
+            onClick={() => {
+              router.push("/Cartao");
+            }}
+          >
+            Criar outro Cartao
+          </button>
         </div>
 
         <div className={styles.section}>
@@ -211,7 +223,7 @@ export default function Checkout() {
               router.push("/HomePagina");
             }}
           >
-            Retornar as Compras
+            Retornar às Compras
           </button>
 
           <button

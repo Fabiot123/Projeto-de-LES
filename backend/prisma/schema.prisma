@@ -91,6 +91,7 @@ model Categorias {
 
 model Carrinhos {
   crn_id String @id @default(uuid())
+  crn_dt_compra DateTime
   crn_icr ItemCarrinhos[]
   crn_cli_id String
   crn_cli Client @relation(fields: [crn_cli_id], references: [cli_id])
