@@ -1,5 +1,4 @@
 /* eslint-disable prettier/prettier */
-// src/vendas/vendas.service.ts
 import { Injectable } from '@nestjs/common';
 import { prisma } from '../lib/prisma';
 
@@ -9,17 +8,18 @@ export class DashboardService {
     return prisma.categorias.findMany();
   }
 
-  async getLivrosPorCategoria(categoria: string) {
+  async getLivrosPorCategoria(categorias: string[]) {
     const itens = await prisma.itemCarrinhos.groupBy({
       by: ['icr_lvr_id'],
       _sum: { icr_qtn: true },
       orderBy: { _sum: { icr_qtn: 'desc' } },
-      take: 10,
       where: {
         icr_lvr: {
           lvr_cat: {
             some: {
-              cat_nome: categoria,
+              cat_nome: {
+                in: categorias,
+              },
             },
           },
         },
@@ -41,5 +41,3 @@ export class DashboardService {
     return livrosMaisVendidos;
   }
 }
-
-module.exports = { DashboardService };

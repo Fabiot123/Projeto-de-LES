@@ -1,57 +1,65 @@
 /* Estilo geral do container do dashboard */
 .dashboardcontainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    background-color: #f7f7f7;
-    min-height: 100vh;
-  }
-  
-  /* Estilo dos gráficos */
-  .chartcontainer {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 20px 0;
-    width: 80%;
-    max-width: 800px;
-  }
-  
-  /* Estilo para o seletor de categorias */
-  .categoryselector {
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .categoryselector label {
-    font-size: 16px;
-    margin-bottom: 8px;
-    color: #333;
-  }
-  
-  .categoryselector select {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
-    width: 200px;
-  }
-  
-  /* Estilo para o título */
-  .dashboardtitle {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 20px;
-  }
-  
-  /* Estilo geral para os gráficos */
-  .linechart {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #f7f7f7;
+  min-height: 100vh;
+}
+
+/* Estilo dos gráficos */
+.chartcontainer {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 20px 0;
+  width: 80%;
+  max-width: 800px;
+}
+
+/* Estilo para o seletor de categoria */
+.categoryselector {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.categoryselector label {
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.categoryselector select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  width: 200px;
+}
+
+/* Estilo para o título */
+.dashboardtitle {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Estilo geral para os gráficos */
+.linechart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.categoryselector select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  width: 200px;
+  height: 100px; /* Aumente a altura para facilitar a seleção */
+}

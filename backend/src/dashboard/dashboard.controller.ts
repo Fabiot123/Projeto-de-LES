@@ -5,6 +5,7 @@ import { DashboardService } from './dashboard.service';
 @Controller('dashboard')
 export class DashboardController {
   private readonly logger = new Logger(DashboardController.name);
+
   constructor(private dashboardService: DashboardService) {}
 
   @Get('categorias')
@@ -14,10 +15,11 @@ export class DashboardController {
   }
 
   @Get('livros-por-categoria')
-  async getLivrosPorCategoria(@Query('categoria') categoria: string) {
+  async getLivrosPorCategoria(@Query('categorias') categorias: string) {
     this.logger.log(
-      `Recebida requisição para obter livros da categoria: ${categoria}`,
+      `Recebida requisição para obter livros das categorias: ${categorias}`,
     );
-    return this.dashboardService.getLivrosPorCategoria(categoria);
+    const categoriasArray = categorias.split(',');
+    return this.dashboardService.getLivrosPorCategoria(categoriasArray);
   }
 }
