@@ -14,7 +14,7 @@ model Client {
   cli_gen Genero 
   cli_tel_id String @unique
   cli_tel Telefone? @relation(fields: [cli_tel_id], references: [tel_id], onDelete: Cascade)
-  cli_dt_nasc DateTime
+  cli_dt_nasc DateTime @db.Date
   cli_cpf String @unique
   cli_email String @unique
   cli_senha String
@@ -91,7 +91,7 @@ model Categorias {
 
 model Carrinhos {
   crn_id String @id @default(uuid())
-  crn_dt_compra DateTime
+  crn_dt_compra DateTime @db.Date
   crn_icr ItemCarrinhos[]
   crn_cli_id String
   crn_cli Client @relation(fields: [crn_cli_id], references: [cli_id])
