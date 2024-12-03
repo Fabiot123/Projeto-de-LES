@@ -2,7 +2,7 @@ describe("fluxo venda", () => {
   it("cliente-compra", () => {
     cy.visit("http://localhost:3000");
     cy.get("button[data-test=login]").first().click();
-    cy.get("input[name=email]").type("example@example.com");
+    cy.get("input[name=email]").type("Meire90@live.com");
     cy.get("button[data-test=login]").first().click();
     cy.get("button[data-test=add-item]").first().click();
     cy.get("button[data-test=remove-item]").first().click();
@@ -15,7 +15,7 @@ describe("fluxo venda", () => {
     cy.get("input[name=cartaoCredito]").first().click();
     cy.get("input[name=cartaoCredito]").last().click();
     cy.get('input[data-test="preco"]').first().type("15");
-    cy.get('input[data-test="preco"]').last().type("26,9");
+    cy.get('input[data-test="preco"]').last().type("164,8");
     cy.get("input[data-test=endereco]").first().click();
     cy.get("button[data-test=finalizar]").first().click();
     cy.get("button[data-test=compras").click();
