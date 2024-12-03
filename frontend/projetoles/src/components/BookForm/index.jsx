@@ -239,7 +239,9 @@ const BookForm = ({ onBookAdded }) => {
         ))}
       </select>
 
-      <button type="submit">Adicionar Livro</button>
+      <button data-test="criar-livro" type="submit">
+        Adicionar Livro
+      </button>
     </form>
   );
 };

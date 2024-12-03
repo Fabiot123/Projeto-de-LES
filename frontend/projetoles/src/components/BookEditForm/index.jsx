@@ -83,6 +83,7 @@ const BookEditForm = ({ bookId, onBookUpdated, onCancel }) => {
       <label>Autor</label>
       <input
         type="text"
+        data-test="atr_edt"
         name="lvr_atr"
         value={formData.lvr_atr}
         onChange={handleChange}
@@ -92,6 +93,7 @@ const BookEditForm = ({ bookId, onBookUpdated, onCancel }) => {
       <label>Título</label>
       <input
         type="text"
+        data-test="ttl_edt"
         name="lvr_ttl"
         value={formData.lvr_ttl}
         onChange={handleChange}
@@ -101,6 +103,7 @@ const BookEditForm = ({ bookId, onBookUpdated, onCancel }) => {
       <label>ISBN</label>
       <input
         type="text"
+        data-test="ISBN_edt"
         name="lvr_ISBN"
         value={formData.lvr_ISBN}
         onChange={handleChange}
@@ -110,6 +113,7 @@ const BookEditForm = ({ bookId, onBookUpdated, onCancel }) => {
       <label>Ano</label>
       <input
         type="number"
+        data-test="ano_edt"
         name="lvr_ano"
         value={formData.lvr_ano}
         onChange={handleChange}
@@ -119,6 +123,7 @@ const BookEditForm = ({ bookId, onBookUpdated, onCancel }) => {
       <label>Número de Páginas</label>
       <input
         type="number"
+        data-test="num_pag_edt"
         name="lvr_num_pag"
         value={formData.lvr_num_pag}
         onChange={handleChange}
@@ -128,6 +133,7 @@ const BookEditForm = ({ bookId, onBookUpdated, onCancel }) => {
       <label>Sinopse</label>
       <textarea
         name="lvr_snp"
+        data-test="snp_edt"
         value={formData.lvr_snp}
         onChange={handleChange}
         required
@@ -136,6 +142,7 @@ const BookEditForm = ({ bookId, onBookUpdated, onCancel }) => {
       <label>Altura (cm)</label>
       <input
         type="number"
+        data-test="alt_edt"
         name="lvr_alt"
         value={formData.lvr_alt}
         onChange={handleChange}
@@ -145,6 +152,7 @@ const BookEditForm = ({ bookId, onBookUpdated, onCancel }) => {
       <label>Largura (cm)</label>
       <input
         type="number"
+        data-test="lar_edt"
         name="lvr_lar"
         value={formData.lvr_lar}
         onChange={handleChange}
@@ -154,6 +162,7 @@ const BookEditForm = ({ bookId, onBookUpdated, onCancel }) => {
       <label>Peso (kg)</label>
       <input
         type="number"
+        data-test="pes_edt"
         name="lvr_pes"
         value={formData.lvr_pes}
         onChange={handleChange}
@@ -163,6 +172,7 @@ const BookEditForm = ({ bookId, onBookUpdated, onCancel }) => {
       <label>Profundidade (cm)</label>
       <input
         type="number"
+        data-test="prf_edt"
         name="lvr_prf"
         value={formData.lvr_prf}
         onChange={handleChange}
@@ -172,6 +182,7 @@ const BookEditForm = ({ bookId, onBookUpdated, onCancel }) => {
       <label>Status</label>
       <select
         name="lvr_stt"
+        data-test="stt_edt"
         value={formData.lvr_stt}
         onChange={handleChange}
         required
@@ -183,6 +194,7 @@ const BookEditForm = ({ bookId, onBookUpdated, onCancel }) => {
       <label>Preço (R$)</label>
       <input
         type="number"
+        data-test="prc_edt"
         name="lvr_prc"
         value={formData.lvr_prc}
         onChange={handleChange}
@@ -192,6 +204,7 @@ const BookEditForm = ({ bookId, onBookUpdated, onCancel }) => {
       <label>Código de Barras</label>
       <input
         type="text"
+        data-test="cod_brr_edt"
         name="lvr_cod_brr"
         value={formData.lvr_cod_brr}
         onChange={handleChange}
@@ -201,6 +214,7 @@ const BookEditForm = ({ bookId, onBookUpdated, onCancel }) => {
       <label>Quantidade em Estoque</label>
       <input
         type="number"
+        data-test="qnt_edt"
         name="lvr_qnt"
         value={formData.lvr_qnt}
         onChange={handleChange}
@@ -210,6 +224,7 @@ const BookEditForm = ({ bookId, onBookUpdated, onCancel }) => {
       <label>Categoria</label>
       <select
         name="lvr_cat"
+        data-test="cat_edt"
         value={formData.lvr_cat}
         onChange={handleChange}
         required
@@ -222,8 +237,10 @@ const BookEditForm = ({ bookId, onBookUpdated, onCancel }) => {
         ))}
       </select>
 
-      <button type="submit">Atualizar Livro</button>
-      <button type="button" onClick={onCancel}>
+      <button data-test="atualizar-button" type="submit">
+        Atualizar Livro
+      </button>
+      <button data-test="deletar-button" type="button" onClick={onCancel}>
         Cancelar
       </button>
     </form>

@@ -77,18 +77,31 @@ describe("crud cliente", () => {
     cy.get("button[id=criar]").click();
   });
 
-  // it("update", () => {
-  //   cy.visit("http://localhost:3000/Admin/Users");
-  //   cy.get("a[data-test=update-button]").first().click();
-  //   cy.get('input[name="endereco.[0].logra"]')
-  //     .clear()
-  //     .type(faker.location.street());
-  //   cy.get("input[name=name]").clear().type(faker.person.fullName());
-  //   cy.get("button[id=criar]").click();
-  // });
+  it("update", () => {
+    cy.visit("http://localhost:3000/Admin/Users");
+    cy.get("a[data-test=update-button]").first().click();
+    cy.get('input[name="endereco.[0].logra"]')
+      .clear()
+      .type(faker.location.street());
+    cy.get('select[name="tel.tipo"]').select("Fixo");
+    cy.get('input[name="tel.ddd"]').type(
+      faker.number.int({
+        min: 10,
+        max: 99,
+      })
+    );
+    cy.get('input[name="tel.numero"]').type(
+      faker.number.int({
+        min: 10000000000,
+        max: 99999999999,
+      })
+    );
+    cy.get("input[name=name]").clear().type(faker.person.fullName());
+    cy.get("button[id=criar]").click();
+  });
 
-  // it("delete", () => {
-  //   cy.visit("http://localhost:3000/Admin/Users");
-  //   cy.get("button[data-test=delete-button]").first().click();
-  // });
+  it("delete", () => {
+    cy.visit("http://localhost:3000/Admin/Users");
+    cy.get("button[data-test=delete-button]").first().click();
+  });
 });

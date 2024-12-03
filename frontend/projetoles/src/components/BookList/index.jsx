@@ -48,8 +48,18 @@ const BookList = ({ books, onBookDeleted, onBookUpdated }) => {
               </span>
             </div>
             <div className={styles.bookListActions}>
-              <button onClick={() => handleDelete(book.lvr_id)}>Excluir</button>
-              <button onClick={() => startEditing(book.lvr_id)}>Editar</button>
+              <button
+                data-test="delete-livro"
+                onClick={() => handleDelete(book.lvr_id)}
+              >
+                Excluir
+              </button>
+              <button
+                data-test="editar-livro"
+                onClick={() => startEditing(book.lvr_id)}
+              >
+                Editar
+              </button>
             </div>
             {editingBookId === book.lvr_id && (
               <BookEditForm
