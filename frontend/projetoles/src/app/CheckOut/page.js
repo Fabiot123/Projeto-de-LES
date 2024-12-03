@@ -7,8 +7,6 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { NumericFormat } from "react-number-format";
-import CardForm from "@/components/FormCartao";
-import Link from "next/link";
 
 const notify = () => {
   toast.success("Compra Realizada com Sucesso!");
@@ -18,14 +16,30 @@ export default function Checkout() {
   const { cart } = useStore();
   const router = useRouter();
   const [user, setUser] = useState();
+  const [cartoes, setCartoes] = useState([]);
   const [cupomCode, setCupomCode] = useState("");
   const [desconto, setDesconto] = useState(0);
   const [valueWarnings, setValueWarnings] = useState({});
 
   useEffect(() => {
-    const usuario = localStorage.getItem("user");
-    const usuarioParse = JSON.parse(usuario);
-    setUser(usuarioParse);
+    const fetchUserAndCards = async () => {
+      const usuario = localStorage.getItem("user");
+      const usuarioParse = JSON.parse(usuario);
+      setUser(usuarioParse);
+
+      if (usuarioParse?.cli_id) {
+        try {
+          const response = await api.get(
+            `/checkout/card/${usuarioParse.cli_id}`
+          );
+          setCartoes(response.data);
+        } catch (error) {
+          console.error("Erro ao buscar cartões do cliente:", error);
+        }
+      }
+    };
+
+    fetchUserAndCards();
   }, []);
 
   const handleApplyCupom = async () => {
@@ -80,9 +94,6 @@ export default function Checkout() {
       const data = response.data;
       console.log("Compra finalizada com sucesso:", data);
 
-      console.log("Resposta da API:", response.data);
-
-      console.log("Compra finalizada com sucesso:", response.data);
       notify();
       router.push("/HomePagina");
     } catch (error) {
@@ -106,10 +117,14 @@ export default function Checkout() {
     }
   };
 
+  const addCard = (newCards) => {
+    setCartoes((prevCartoes) => [...prevCartoes, ...newCards]);
+  };
+
   return (
     <div className={styles.checkoutContainer}>
       <h2 className={styles.title}>Checkout</h2>
-      <form className={styles.checkoutForm}>
+      <div className={styles.checkoutForm}>
         <div className={styles.section}>
           {cart.map((item) => (
             <li key={item.lvr_id} className={styles.cartItem}>
@@ -153,7 +168,15 @@ export default function Checkout() {
 
         <div className={styles.section}>
           <h3 className={styles.sectionTitle}>Escolha o Cartão de Crédito</h3>
-          {user?.cli_crt?.map((cartao) => (
+          <button
+            type="button"
+            onClick={() => {
+              router.push("/Cartao");
+            }}
+          >
+            Adicionar Cartao
+          </button>
+          {cartoes.map((cartao) => (
             <div key={cartao.crt_num} className={styles.wrapper}>
               <input
                 type="checkbox"
@@ -186,15 +209,6 @@ export default function Checkout() {
               )}
             </div>
           ))}
-          <button
-            data-test="adicionar-cartao"
-            type="button"
-            onClick={() => {
-              router.push("/Cartao");
-            }}
-          >
-            Criar outro Cartao
-          </button>
         </div>
 
         <div className={styles.section}>
@@ -238,7 +252,7 @@ export default function Checkout() {
             Finalizar Compra
           </button>
         </div>
-      </form>
+      </div>
     </div>
   );
 }

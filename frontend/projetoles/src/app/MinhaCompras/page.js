@@ -4,6 +4,7 @@ import styles from "./MinhaCompras.module.css";
 import Link from "next/link";
 import { useVendaQuery } from "@/services/query/vendaQuery";
 import { api } from "@/libs/axios";
+import { format } from "date-fns";
 
 export default function VendasManagement() {
   const { data: vendas } = useVendaQuery();
@@ -112,6 +113,7 @@ export default function VendasManagement() {
         <thead>
           <tr>
             <th>Produtos - Quantidade</th>
+            <th>Data da Compra</th>
             <th>Selecionar para Reembolso</th>
             <th>Quantidade para Reembolso</th>
             <th>Status</th>
@@ -127,6 +129,14 @@ export default function VendasManagement() {
                   </div>
                 ))}
               </td>
+              <td>
+                <div>
+                  {venda.crn_dt_compra
+                    ? new Date(venda.crn_dt_compra).toLocaleDateString("pt-BR")
+                    : "Data não disponível"}
+                </div>
+              </td>
+
               <td>
                 {venda.crn_status === "Entregue" ? (
                   venda.crn_icr.map((item) => (
