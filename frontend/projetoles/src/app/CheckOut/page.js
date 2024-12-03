@@ -169,6 +169,7 @@ export default function Checkout() {
         <div className={styles.section}>
           <h3 className={styles.sectionTitle}>Escolha o Cartão de Crédito</h3>
           <button
+            data-test="criar-cartao"
             type="button"
             onClick={() => {
               router.push("/Cartao");

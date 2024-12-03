@@ -137,7 +137,9 @@ const CardForm = ({ addCard }) => {
         >
           Adicionar Novo Cartão
         </button>
-        <button type="submit">Adicionar Cartão</button>
+        <button data-test="criar_card" type="submit">
+          Adicionar Cartão
+        </button>
       </form>
     </div>
   );

@@ -1,3 +1,5 @@
+import { fakerPT_BR as faker } from "@faker-js/faker";
+
 describe("fluxo venda", () => {
   it("cliente-compra", () => {
     cy.visit("http://localhost:3000");
@@ -12,6 +14,30 @@ describe("fluxo venda", () => {
     cy.get("button[data-test=add-item]").first().click();
     cy.get("button[data-test=remove-item]").first().click();
     cy.get("button[data-test=cart]").first().click();
+    cy.get("button[data-test=criar-cartao]").click();
+
+    //
+
+    cy.get('input[name="cartao.0.num"]').type(
+      faker.number.int({
+        min: 1000000000000000,
+        max: 9999999999999999,
+      })
+    );
+    cy.get('input[name="cartao.0.cvc"]').type(
+      faker.number.int({
+        min: 100,
+        max: 999,
+      })
+    );
+    cy.get('select[name="cartao.0.bandeira"]').select("Elo");
+    cy.get('input[name="cartao.0.nome"]').type(faker.person.fullName());
+    cy.get('input[name="cartao.0.validade"]').type("1025");
+    cy.get("input[id=credito]").click();
+    cy.get("button[data-test=criar_card]").first().click();
+
+    //
+
     cy.get("input[name=cartaoCredito]").first().click();
     cy.get("input[name=cartaoCredito]").last().click();
     cy.get('input[data-test="preco"]').first().type("15");
@@ -57,7 +83,7 @@ describe("fluxo venda", () => {
     cy.get("input[name=cartaoCredito]").first().click();
     cy.get("input[name=cartaoCredito]").last().click();
     cy.get('input[data-test="preco"]').first().type("15");
-    cy.get('input[data-test="preco"]').last().type("26,9");
+    cy.get('input[data-test="preco"]').last().type("64,8");
     cy.get("input[data-test=endereco]").first().click();
     cy.get("button[data-test=finalizar]").first().click();
   });
